@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adicionar Despesas</title>
+    <link rel="stylesheet" href="estilo.css">
+    <style>
+        body {
+            background-color: burlywood;
+        }
+        input {
+            border-radius: 10px;
+            width: 500px;
+            padding: 15px;
+            margin: auto;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.507);
+        }
+        select {
+            width: 530px;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.507);
+        }
+    </style>
+</head>
+<body>
+    <a href="modelo.html"><img src="imagens/voltar.png" alt="voltar"></a>
+    <h1>Adicionar Despesas</h1>
+    <input type="number" name="AdicionarDespesas" id="AdicionarDespesas">
+    <br>
+    <select name="categoria" id="categoria">
+        <option value="Mercado">Mercado</option>
+        <option value="Restaurante">Restaurante</option>
+        <option value="Agua">Água</option>        
+    </select>
+    <br>
+    <input type="text" name="descricao" id="descricao">
+    <br>
+    <img src="imagens/foto-confirmar.png" alt="confirmar" id="confirmarDespesas">
+    <script src="script.js"></script>
+</body>
+</html>
