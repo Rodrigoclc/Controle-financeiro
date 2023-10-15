@@ -6,72 +6,55 @@
     <title>Despesas de Compras</title>
     <link rel="stylesheet" href="estilo.css">
     <style>
-        input {
-            border-radius: 10px;
-            width: 500px;
-            padding: 15px;
-            margin: auto;
-            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.507);
-        }
-        select {
-            width: 530px;
-            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.507);
-        }
+        
     </style>
 </head>
 <body>
     <header>
         <h1>Despesas de Compras</h1>
     </header>
-    <div>
-        <select name="projetos" id="projetos">
-            <option value="projeto1">Projeto 01</option>
-            <option value="projeto2">Projeto 02</option>
-            <option value="projeto3">Projeto 03</option>
-        </select>
-    </div>
-    <br>
-    <a href="adicionar-renda.html">
-        <section id="AdicionarRenda">
-            <div>Adicionar Renda</div>
-        </section>
-    </a>
-    <a href="adicionar-despesas.html">
-        <section>
-            <div>Adicionar Despesas</div>
-        </section>
-    </a>
-        <a href="lista.html">
-            <section>
-            <div>Lista</div>    
-                </section>
+    <main>
+        <div id="select">
+            <select name="projetos" id="projetos">
+                <option value="projeto1">Projeto 01</option>
+                <option value="projeto2">Projeto 02</option>
+                <option value="projeto3">Projeto 03</option>
+            </select>
+        </div>
+        <br>
+        <a href="adicionar-renda.html">
+            <span class="divMenu">Adicionar Renda</span>
         </a>
-    <a href="relatorios.html">
-        <section>
-            <div>Relatórios</div>
+        <a href="adicionar-despesas.html">
+            <span class="divMenu">Adicionar Despesas</span>
+        </a>
+        <br>
+        <a href="lista.html">
+            <span class="divMenu">Lista</span>
+        </a>
+        <a href="relatorios.html">
+            <span class="divMenu">Relatórios</span>
+        </a>
+        <br>
+        <a href="projetos.html">
+            <span class="divMenu">Projetos</span>
+        </a>
+        <a href="opcoes.html">
+            <span class="divMenu">Opções</span>
+        </a>
+        <br>
+        <section id="resultados">
+            <div>Saldo Inicial:</div>
+            <div>Renda:</div>
+            <div>Despesa:</div>
+            <div>
+            <div>
+            <div>
+            <hr>
+            <div>Saldo final</div>
+            <div>
         </section>
-    </a>
-    <a href="projetos.html">
-        <section>
-            <div>Projetos</div>
-        </section>
-    </a>
-    <a href="opcoes.html">
-        <section>
-            <div>Opções</div>
-        </section>
-    </a>
-    <section id="SectionRes">
-        <div>Saldo Inicial:</div>
-        <div>Renda:</div>
-        <div>Despesa:</div>
-        <div>
-        <div>
-        <div>
-        <hr>
-        <div>Saldo final</div>
-        <div>
-    </section>
+    </main>
     <footer>
         <p>&copy;Exercício</p>
     </footer>

@@ -1,0 +1,62 @@
+body {
+    background-color: lightgray;
+}
+
+h1 {
+    display: inline;
+}
+
+header {
+    
+    width: 500px;
+    margin: 20px auto 20px auto; 
+}
+
+body > main {
+    display: block;
+    margin: 5px auto 5px auto; 
+}
+
+span {
+    display: inline-block;
+    background-color: rgb(131, 131, 131);
+    height: 100px;
+    width: 200px;
+    margin: 5px;
+    
+}
+
+span > a {
+    width: 100px;
+}
+
+#select {
+    height: auto;
+    width: 500px;
+}
+
+select {
+    display: block;
+    width: 500px;
+    margin:1px auto 1px auto;
+}
+
+input {
+    display: block;
+    width: 492px;
+    margin: 1px auto 1px auto;
+}
+.imgconfirmar {
+    display: block;
+    margin: 20px auto 20px auto;
+}
+
+#resultados {
+    width: 500px;
+    
+}
+
+.voltar {
+    width: 25px;
+    height: 25px;
+}
