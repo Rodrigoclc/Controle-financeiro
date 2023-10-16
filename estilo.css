@@ -6,8 +6,7 @@ h1 {
     display: inline;
 }
 
-header {
-    
+header {    
     width: 400px;
     margin: auto; 
 }
@@ -27,11 +26,8 @@ span {
     height: 100px;
     width: 200px;
     margin: 5px;
-    
-}
-
-span > a {
-    width: 100px;
+    padding: 0px;
+    border-radius: 5%;
 }
 
 #select {
@@ -45,9 +41,15 @@ select {
     margin:1px auto 1px auto;
 }
 
+.linkindex {
+    display: inline-block;
+    text-align: center;
+    width: 200px;
+}
+
 input {
     display: block;
-    width: 430px;
+    width: 420px;
     margin: 1px auto 1px auto;
 }
 .imgconfirmar {
