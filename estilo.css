@@ -62,6 +62,10 @@ input {
     
 }
 
+.resdivs {
+    text-align: justify;
+}
+
 .voltar {
     width: 25px;
     height: 25px;
