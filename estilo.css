@@ -57,13 +57,70 @@ input {
     margin: 20px auto 20px auto;
 }
 
-#resultados {
-    width: 430px;
+.btConfirmarAdd {
+    display: block;
+    margin: 20px auto 20px auto;
+    background-color: black;
     
 }
 
-.resdivs {
-    text-align: justify;
+#resultados {
+    position: relative;
+    width: 430px;
+    height: 100px;    
+}
+
+#divSaldoInicial {
+    position: absolute;
+    right: 50%;
+    top: 5px;
+}
+
+#resultadoSaldoInicial {
+    position: absolute;
+    right: 10%;
+    top: 5px;
+}
+
+#divRenda {
+    position: absolute;
+    right: 50%;
+    top: 20px;
+}
+
+#resultadoRenda {
+    position: absolute;
+    right: 10%;
+    top: 20px;
+}
+
+#divDespesa {
+    position: absolute;
+    right: 50%;
+    top: 35px;
+}
+
+#resultadoDespesa {
+    position: absolute;
+    right: 10%;
+    top: 35px;
+}
+
+hr {
+    top: 57px;
+    position: relative;
+}
+
+#divsaldoFinal {
+    position: absolute;
+    right: 50%;
+    top: 60px;
+}
+
+#resultadoSaldoFinal{
+    position: absolute;
+    right: 10%;
+    top: 60px;
 }
 
 .voltar {

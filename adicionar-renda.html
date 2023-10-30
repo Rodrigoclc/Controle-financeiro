@@ -11,7 +11,7 @@
         <a href="modelo.html"><img class="voltar" src="imagens/voltar.png" alt="voltar"></a>
         <h1>Adicionar Renda</h1>
     </header>
-    <input aria-label="valor da renda" type="number" name="AdicionarRenda" id="AdicionarRenda">
+    <input aria-label="valor da renda" type="number" name="AdicionarRenda" id="inputAdicionarRenda">
     <br>
     <select aria-label="lista de renda" name="categoria" id="categoria">
         <option value="Mercado">Mercado</option>
@@ -21,6 +21,25 @@
     <br>
     <input aria-label="descricao" type="text" name="descricao" id="descricao">
     <br>
-    <img  class="imgconfirmar" src="imagens/foto-confirmar.png" alt="confirmar">
+    <button id="confirmarAddRenda" class="btConfirmarAdd" type="submit"><img class="imgconfirmar" src="imagens/foto-confirmar.png" alt="confirmar"></button>
+    
+    <script>
+        var inputAdicionarRenda = document.getElementById('inputAdicionarRenda')
+        var confirmarAddRenda = document.getElementById('confirmarAddRenda')
+        var saldoInicialProjeto1 = 0
+        var rendaProjeto1 = Number(localStorage.getItem('renda'))
+        var despesaProjeto1 = 0
+
+        confirmarAddRenda.onclick = function() {
+            if (inputAdicionarRenda.value.length == 0 || inputAdicionarRenda.value <= 0) {
+                alert('[ERRO] Digite um valor válido')        
+            } else {
+                rendaProjeto1 += Number(inputAdicionarRenda.value)
+                localStorage.setItem('renda', rendaProjeto1)
+            }
+        }
+        
+    </script>
+    
 </body>
 </html>

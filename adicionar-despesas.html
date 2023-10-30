@@ -11,7 +11,7 @@
         <a href="modelo.html"><img class="voltar" src="imagens/voltar.png" alt="voltar"></a>
         <h1>Adicionar Despesas</h1>
     </header>
-    <input aria-label="valor da despesa" type="number" name="AdicionarDespesas" id="AdicionarDespesas">
+    <input aria-label="valor da despesa" type="number" name="AdicionarDespesas" id="inputAdicionarDespesas">
     <br>
     <select aria-label="lista de despesas" name="seldespesasadd" id="seldespesasadd">
         <option value="Mercado">Mercado</option>
@@ -21,7 +21,22 @@
     <br>
     <input aria-label="descricao" type="text" name="descricao" id="descricao">
     <br>
-    <img class="imgconfirmar" src="imagens/foto-confirmar.png" alt="confirmar" id="confirmarDespesas">
-    <script src="script.js"></script>
+    <button id="confirmarAddDespesas" class="btConfirmarAdd" type="submit"><img class="imgconfirmar" src="imagens/foto-confirmar.png" alt="confirmar" ></button>
+    
+    <script>
+        var inputAdicionarDespesas = document.getElementById('inputAdicionarDespesas')
+        var confirmarAddDespesas = document.getElementById('confirmarAddDespesas')
+        var despesaProjeto1 = Number(localStorage.getItem('despesa'))
+
+        confirmarAddDespesas.onclick = function() {
+            if (inputAdicionarDespesas.value.length == 0 || inputAdicionarDespesas.value <= 0) {
+                alert('[ERRO] Digite um valor válido')        
+            } else {
+                despesaProjeto1 += Number(inputAdicionarDespesas.value)
+                localStorage.setItem('despesa', despesaProjeto1)
+            }
+        }
+        
+    </script>
 </body>
 </html>
