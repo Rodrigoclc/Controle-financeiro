@@ -26,15 +26,17 @@
     <script>
         var inputAdicionarDespesas = document.getElementById('inputAdicionarDespesas')
         var confirmarAddDespesas = document.getElementById('confirmarAddDespesas')
-        var despesaProjeto1 = Number(localStorage.getItem('despesa'))
+        var despesaProjeto1 = Number(localStorage.getItem('despesa1'))
 
         confirmarAddDespesas.onclick = function() {
             if (inputAdicionarDespesas.value.length == 0 || inputAdicionarDespesas.value <= 0) {
                 alert('[ERRO] Digite um valor válido')        
             } else {
                 despesaProjeto1 += Number(inputAdicionarDespesas.value)
-                localStorage.setItem('despesa', despesaProjeto1)
+                localStorage.setItem('despesa1', despesaProjeto1)
             }
+            inputAdicionarDespesas.value = ''  
+            inputAdicionarDespesas.focus()    
         }
         
     </script>

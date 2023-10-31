@@ -27,7 +27,7 @@
         var inputAdicionarRenda = document.getElementById('inputAdicionarRenda')
         var confirmarAddRenda = document.getElementById('confirmarAddRenda')
         var saldoInicialProjeto1 = 0
-        var rendaProjeto1 = Number(localStorage.getItem('renda'))
+        var rendaProjeto1 = Number(localStorage.getItem('renda1'))
         var despesaProjeto1 = 0
 
         confirmarAddRenda.onclick = function() {
@@ -35,8 +35,10 @@
                 alert('[ERRO] Digite um valor válido')        
             } else {
                 rendaProjeto1 += Number(inputAdicionarRenda.value)
-                localStorage.setItem('renda', rendaProjeto1)
+                localStorage.setItem('renda1', rendaProjeto1)
             }
+            inputAdicionarRenda.value = ''  
+            inputAdicionarRenda.focus() 
         }
         
     </script>
