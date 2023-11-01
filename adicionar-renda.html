@@ -28,17 +28,40 @@
         var confirmarAddRenda = document.getElementById('confirmarAddRenda')
         var saldoInicialProjeto1 = 0
         var rendaProjeto1 = Number(localStorage.getItem('renda1'))
-        var despesaProjeto1 = 0
+        var rendaProjeto2 = Number(localStorage.getItem('renda2'))
+        var rendaProjeto3 = Number(localStorage.getItem('renda3'))
+        var ultimoProjetoSelecionado = Number(localStorage.getItem('ultimoProjeto'))
+        
 
         confirmarAddRenda.onclick = function() {
-            if (inputAdicionarRenda.value.length == 0 || inputAdicionarRenda.value <= 0) {
+            if (ultimoProjetoSelecionado == 1) {
+                if (inputAdicionarRenda.value.length == 0 || inputAdicionarRenda.value <= 0) {
                 alert('[ERRO] Digite um valor válido')        
-            } else {
+                } else {
                 rendaProjeto1 += Number(inputAdicionarRenda.value)
                 localStorage.setItem('renda1', rendaProjeto1)
+                }
+                inputAdicionarRenda.value = ''  
+                inputAdicionarRenda.focus() 
+            } else if (ultimoProjetoSelecionado == 2) {
+                if (inputAdicionarRenda.value.length == 0 || inputAdicionarRenda.value <= 0) {
+                alert('[ERRO] Digite um valor válido')        
+                } else {
+                rendaProjeto2 += Number(inputAdicionarRenda.value)
+                localStorage.setItem('renda2', rendaProjeto2)
+                }
+                inputAdicionarRenda.value = ''  
+                inputAdicionarRenda.focus()      
+            } else if (ultimoProjetoSelecionado == 3) {
+                if (inputAdicionarRenda.value.length == 0 || inputAdicionarRenda.value <= 0) {
+                alert('[ERRO] Digite um valor válido')        
+                } else {
+                rendaProjeto3 += Number(inputAdicionarRenda.value)
+                localStorage.setItem('renda3', rendaProjeto3)
+                }
+                inputAdicionarRenda.value = ''  
+                inputAdicionarRenda.focus()  
             }
-            inputAdicionarRenda.value = ''  
-            inputAdicionarRenda.focus() 
         }
         
     </script>

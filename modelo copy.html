@@ -1,66 +1,44 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Despesas de Compras</title>
-    <link rel="stylesheet" href="estilo.css">
-    <style>
-        
-    </style>
+    <title>Teste de select</title>
 </head>
 <body>
-    <header>
-        <h1>Despesas de Compras</h1>
-    </header>
-    <div id="select">
-        <select name="projetos" id="projetos">
-            <option value="projeto1">Projeto 01</option>
-            <option value="projeto2">Projeto 02</option>
-            <option value="projeto3">Projeto 03</option>
-        </select>
-    </div>
-    <br>
-    <a href="adicionar-renda.html">
-        <section class="fila1">
-            <div class="divInSection">Adicionar Renda</div>
-        </section>
-    </a>
-    <br>
-    <a href="adicionar-despesas.html">        
-        <div class="divInSection">Adicionar Despesas</div>        
-    </a>
-    <br>
-        <a href="lista.html">            
-        <div class="divInSection">Lista</div>                
-        </a>
-    <br>
-    <a href="relatorios.html">        
-        <div class="divInSection">Relatórios</div>        
-    </a>
-    <br>
-    <a href="projetos.html">        
-        <div class="divInSection">Projetos</div>        
-    </a>
-    <br>
-    <a href="opcoes.html">        
-        <div class="divInSection">Opções</div>        
-    </a>
-    <br>
-    <section id="resultados">
-        <div>Saldo Inicial:</div>
-        <div>Renda:</div>
-        <div>Despesa:</div>
-        <div>
-        <div>
-        <div>
-        <hr>
-        <div>Saldo final</div>
-        <div>
-    </section>
-    <footer>
-        <p>&copy;Exercício</p>
-    </footer>
-    <script src="script.js"></script>
+    <h1>Escolhendo um select</h1>
+
+    <select name="seletor" id="seletor">
+        <option class="telas" value="tela1">tela1</option>
+        <option class="telas" value="tela2">tela2</option>
+        <option class="telas" value="tela3">tela3</option>
+    </select>
+
+    <div id="res">
+
+    <script>
+        var seletor = document.querySelector('select#seletor')
+        var telas = document.getElementsByClassName('telas')
+        var res = document.querySelector('div#res')
+        var tela = document.getElementById('seletor').value = 'tela1'
+
+        seletor.onchange = function() {
+            const opçãoSelecionada = seletor.value
+
+            if (opçãoSelecionada == 'tela1') {
+                res.innerHTML = 'TELA 01'
+            } else if (opçãoSelecionada == 'tela2') {
+                res.innerHTML = 'TELA 02'
+            } else if (opçãoSelecionada == 'tela3') {
+                res.innerHTML = 'TELA 03'
+            }
+        }
+
+        function telaPrincipal() {
+            $("seletor").val("2")
+
+        }
+        var seleçaoTela = telaPrincipal()
+    </script>
 </body>
 </html>
