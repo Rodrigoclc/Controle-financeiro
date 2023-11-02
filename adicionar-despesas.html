@@ -21,11 +21,12 @@
     <br>
     <input aria-label="descricao" type="text" name="descricao" id="descricao">
     <br>
-    <button id="confirmarAddDespesas" class="btConfirmarAdd" type="submit"><img class="imgconfirmar" src="imagens/foto-confirmar.png" alt="confirmar" ></button>
+    
+    <img class="imgconfirmar" src="imagens/foto-confirmar.png" alt="confirmar" >
     
     <script>
         var inputAdicionarDespesas = document.getElementById('inputAdicionarDespesas')
-        var confirmarAddDespesas = document.getElementById('confirmarAddDespesas')
+        var confirmarAddDespesas = document.querySelector('.imgconfirmar')
         var despesaProjeto1 = Number(localStorage.getItem('despesa1'))
         var despesaProjeto2 = Number(localStorage.getItem('despesa2'))
         var despesaProjeto3 = Number(localStorage.getItem('despesa3'))

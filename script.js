@@ -12,13 +12,11 @@ var saldoInicialProjeto1 = 0
 var saldoInicialProjeto2 = 0
 var saldoInicialProjeto3 = 0
 
-
-
 listaProjetos.onchange = function() {
     const seletor = document.getElementById('lista-projetos')
     const opcaoSelecionada = seletor.value
     // Projeto 01
-    if (opcaoSelecionada === 'projeto1') {
+    if (opcaoSelecionada === '1') {
 
         localStorage.setItem('ultimoProjeto', '1')
         
@@ -32,7 +30,7 @@ listaProjetos.onchange = function() {
         resultadoSaldoFinal.innerHTML = resultadoFinalProjeto1.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})
         
         //Projeto 02
-    } else if (opcaoSelecionada === 'projeto2') {
+    } else if (opcaoSelecionada === '2') {
 
         localStorage.setItem('ultimoProjeto', '2')
 
@@ -44,7 +42,7 @@ listaProjetos.onchange = function() {
         resultadoRenda.innerHTML = rendaProjeto2.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})
         resultadoDespesa.innerHTML = despesaProjeto2.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})
         resultadoSaldoFinal.innerHTML = resultadoFinalProjeto2.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})
-    } else if (opcaoSelecionada === 'projeto3') {
+    } else if (opcaoSelecionada === '3') {
 
         localStorage.setItem('ultimoProjeto', '3')
 
@@ -59,8 +57,11 @@ listaProjetos.onchange = function() {
     }
 }
 
-function telaPrincipal() {
-    if (ultimoProjetoSelecionado == 1) {
+window.onload = function() {
+    const seletor = document.getElementById('lista-projetos')
+    const opcaoSelecionada = seletor.value
+    // Projeto 01
+    if (opcaoSelecionada === '1') {
 
         localStorage.setItem('ultimoProjeto', '1')
         
@@ -74,7 +75,7 @@ function telaPrincipal() {
         resultadoSaldoFinal.innerHTML = resultadoFinalProjeto1.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})
         
         //Projeto 02
-    } else if (ultimoProjetoSelecionado == 2) {
+    } else if (opcaoSelecionada === '2') {
 
         localStorage.setItem('ultimoProjeto', '2')
 
@@ -86,7 +87,7 @@ function telaPrincipal() {
         resultadoRenda.innerHTML = rendaProjeto2.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})
         resultadoDespesa.innerHTML = despesaProjeto2.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})
         resultadoSaldoFinal.innerHTML = resultadoFinalProjeto2.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})
-    } else if (ultimoProjetoSelecionado == 3) {
+    } else if (opcaoSelecionada === '3') {
 
         localStorage.setItem('ultimoProjeto', '3')
 
@@ -100,4 +101,16 @@ function telaPrincipal() {
         resultadoSaldoFinal.innerHTML = resultadoFinalProjeto3.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})
     }
 }
-var seleçaoTela = telaPrincipal()
+function teste() {
+    for (var i = 0; i < listaProjetos.options.length; i++) {
+
+        //console.log(listaProjetos.options[i].value)
+        
+        if (Number(listaProjetos.options[i].value) === ultimoProjetoSelecionado) {
+            listaProjetos.selectedIndex = i            
+            break            
+        } 
+    }  
+    return (listaProjetos.selectedIndex = i)   
+}
+console.log(teste())
