@@ -5,39 +5,25 @@ var resultadoDespesa = document.getElementById('resultadoDespesa')
 var resultadoSaldoFinal = document.getElementById('resultadoSaldoFinal')
 
 var ultimoProjetoSelecionado = Number(localStorage.getItem('ultimoProjeto'))
-var listaObjetos = {}
-listaObjetos = JSON.parse(localStorage.getItem('projetos'))
+var novoprojeto = localStorage.getItem('novoprojeto')
 
-var saldoInicialProjeto = 0
+var saldoInicialProjeto1 = 0
+var saldoInicialProjeto2 = 0
+var saldoInicialProjeto3 = 0
 
-var buscarObjetoPorNome = function(listaObjetos) {
-    
-    var res = null
-    console.log(listaObjetos[i])
-    for (var i in listaObjetos) {
-
-        if (listaObjetos[i].id === id) {
-            res = listaObjetos[i]
-            break
-        }
-    }
-    return res
-}
-
-console.log(buscarObjetoPorNome())
 
 localStorage.setItem('TotalProjetos', listaProjetos.length)
 
 // tentativa de adicionar options
-for (var i in listaProjetos) {
-    //console.log(listaProjetos.options[i].text)
-    if (listaProjetos.options[i].text != listaObjetos) {
-        var option = new Option(listaObjetos);
-        listaProjetos.appendChild(option);
-        
-        break;
-    } 
-}
+// for (var i = 0; i < listaProjetos.length; i++) {
+//     //console.log(listaProjetos.options[i].text)
+//     if (listaProjetos.options[i].text != novoprojeto) {
+//         var option = new Option(novoprojeto);
+//         listaProjetos.appendChild(option);
+//         console.log(ultimoProjetoSelecionado + 1)
+//         break;
+//     } 
+// }
 
 var funçaoPrincipal = function() { 
 
@@ -49,7 +35,7 @@ var funçaoPrincipal = function() {
     var despesaProjeto = Number(localStorage.getItem(`despesa${opcaoSelecionada}`))
     var resultadoFinalProjeto = rendaProjeto - despesaProjeto
 
-    resultadoSaldoInicial.innerHTML = saldoInicialProjeto.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})
+    resultadoSaldoInicial.innerHTML = saldoInicialProjeto1.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})
     resultadoRenda.innerHTML = rendaProjeto.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})
     resultadoDespesa.innerHTML = despesaProjeto.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})
     resultadoSaldoFinal.innerHTML = resultadoFinalProjeto.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})

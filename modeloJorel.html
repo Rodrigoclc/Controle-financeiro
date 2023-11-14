@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Despesas de Compras</title>
+    <link rel="stylesheet" href="estilo.css">
+    <style>
+        
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Despesas de Compras</h1>
+    </header>
+    <main>
+        <div id="select">
+            <select aria-label="lista de projetos" name="lista-projetos" id="lista-projetos">
+            </select>
+        </div>
+        <br>
+        <a id="linkAdicionarRenda" class="linkindex" href="adicionar-renda.html">
+            <span class="divMenu">Adicionar Renda</span>
+        </a>
+        <a class="linkindex" href="adicionar-despesas.html">
+            <span class="divMenu">Adicionar Despesas</span>
+        </a>
+        <br>
+        <a class="linkindex" href="lista.html">
+            <span class="divMenu">Lista</span>
+        </a>
+        <a class="linkindex" href="relatorios.html">
+            <span class="divMenu">Relatórios</span>
+        </a>
+        <br>
+        <a id="linkProjeto" class="linkindex" href="javascript:;">
+            <span class="divMenu">Projetos</span>
+        </a>
+        <a class="linkindex" href="opcoes.html">
+            <span class="divMenu">Opções</span>
+        </a>
+        <br>
+        <section id="resultados">
+            <div id="divSaldoInicial">Saldo Inicial:</div>
+            <div id="resultadoSaldoInicial">0</div>
+            <div id="divRenda">Renda:</div>
+            <div id="resultadoRenda">0</div>            
+            <div id="divDespesa">Despesa:</div>
+            <div id="resultadoDespesa">0</div>
+            <hr>
+            <div id="divsaldoFinal">Saldo final:</div>
+            <div id="resultadoSaldoFinal">0</div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy;Exercício</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

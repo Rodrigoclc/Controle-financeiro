@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projetos</title>
     <link rel="stylesheet" href="estilo.css">
+    <style>
+        div {
+            background-color: rgb(190, 187, 187);
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -12,9 +17,32 @@
         <h1>Projetos</h1>
     </header>
     <main>
-        <div>Novo projeto</div>
+        <div id= "nvProjeto">Novo projeto</div>
         <div id="divProjetos">
     </main>
         
+    <script>
+        var nvProjeto = document.querySelector('#nvProjeto')
+        
+
+        nvProjeto.onclick = function() {
+            
+            var nomeProjeto = prompt('Digite o nome do Projeto')
+            var saldoInicial = Number(prompt(`Digite o saldo inicial do Projeto "${nomeProjeto}"`))
+            var listaObjetos = {}
+            
+            if (localStorage.projetos) {
+                listaObjetos = JSON.parse(localStorage.getItem('projetos')) 
+            }
+
+            var totalProjetos = Number(localStorage.getItem(`TotalProjetos`))
+            console.log(listaObjetos)
+
+            listaObjetos[nomeProjeto] = {}
+            listaObjetos[nomeProjeto]['id'] = (totalProjetos + 1)
+            listaObjetos[nomeProjeto]['saldoinicial'] = saldoInicial
+            localStorage.setItem('projetos', JSON.stringify(listaObjetos))           
+        }
+    </script>
 </body>
 </html>

@@ -27,40 +27,20 @@
     <script>
         var inputAdicionarDespesas = document.getElementById('inputAdicionarDespesas')
         var confirmarAddDespesas = document.querySelector('.imgconfirmar')
-        var despesaProjeto1 = Number(localStorage.getItem('despesa1'))
-        var despesaProjeto2 = Number(localStorage.getItem('despesa2'))
-        var despesaProjeto3 = Number(localStorage.getItem('despesa3'))
         var ultimoProjetoSelecionado = Number(localStorage.getItem('ultimoProjeto'))
+        var despesaProjeto = Number(localStorage.getItem(`despesa${ultimoProjetoSelecionado}`))        
 
         confirmarAddDespesas.onclick = function() {
-            if (ultimoProjetoSelecionado == 1) {
-                if (inputAdicionarDespesas.value.length == 0 || inputAdicionarDespesas.value <= 0) {
+
+            if (inputAdicionarDespesas.value.length == 0 || inputAdicionarDespesas.value <= 0) {
+                
                 alert('[ERRO] Digite um valor válido')        
                 } else {
-                despesaProjeto1 += Number(inputAdicionarDespesas.value)
-                localStorage.setItem('despesa1', despesaProjeto1)
+                despesaProjeto += Number(inputAdicionarDespesas.value)
+                localStorage.setItem(`despesa${ultimoProjetoSelecionado}`, despesaProjeto)
                 inputAdicionarDespesas.value = ''  
                 inputAdicionarDespesas.focus() 
-                } 
-            } else if (ultimoProjetoSelecionado == 2) {
-                if (inputAdicionarDespesas.value.length == 0 || inputAdicionarDespesas.value <= 0) {
-                alert('[ERRO] Digite um valor válido')        
-                } else {
-                despesaProjeto2 += Number(inputAdicionarDespesas.value)
-                localStorage.setItem('despesa2', despesaProjeto2)
-                inputAdicionarDespesas.value = ''  
-                inputAdicionarDespesas.focus() 
-                } 
-            } else if (ultimoProjetoSelecionado == 3) {
-                if (inputAdicionarDespesas.value.length == 0 || inputAdicionarDespesas.value <= 0) {
-                alert('[ERRO] Digite um valor válido')        
-                } else {
-                despesaProjeto3 += Number(inputAdicionarDespesas.value)
-                localStorage.setItem('despesa3', despesaProjeto3)
-                inputAdicionarDespesas.value = ''  
-                inputAdicionarDespesas.focus() 
-                } 
-            }
+            }            
         }
         
     </script>
