@@ -5,50 +5,75 @@ var resultadoDespesa = document.getElementById('resultadoDespesa')
 var resultadoSaldoFinal = document.getElementById('resultadoSaldoFinal')
 
 var ultimoProjetoSelecionado = Number(localStorage.getItem('ultimoProjeto'))
-var listaObjetos = {}
-listaObjetos = JSON.parse(localStorage.getItem('projetos'))
+var projetosLocalStorage = JSON.parse(localStorage.getItem('projetos'))
 
 var saldoInicialProjeto = 0
+var primeirosOptions = ['Projeto 1', 'Projeto 2', 'Projeto 3']
 
-var buscarObjetoPorNome = function(listaObjetos) {
-    
-    var res = null
-    console.log(listaObjetos[i])
-    for (var i in listaObjetos) {
-
-        if (listaObjetos[i].id === id) {
-            res = listaObjetos[i]
-            break
+if (projetosLocalStorage == null) {
+    var listaObjetos = {}
+    for (var i in primeirosOptions) {
+        
+        var option = new Option(primeirosOptions[i])
+        listaProjetos.appendChild(option)
+        
+        if (listaObjetos != null) {
+            console.log(listaObjetos)
         }
+        
+        listaObjetos[primeirosOptions[i]] = {}
+        listaObjetos[primeirosOptions[i]]['id'] = i
+        listaObjetos[primeirosOptions[i]]['saldoinicial'] = 0
+        localStorage.setItem('projetos', JSON.stringify(listaObjetos))
     }
-    return res
+} else {
+    
+    for (var i in projetosLocalStorage) {
+        
+        var a = projetosLocalStorage[i]
+        
+        var option = new Option(i)
+        listaProjetos.appendChild(option)
+    }
 }
-
-console.log(buscarObjetoPorNome())
 
 localStorage.setItem('TotalProjetos', listaProjetos.length)
 
-// tentativa de adicionar options
-for (var i in listaProjetos) {
-    //console.log(listaProjetos.options[i].text)
-    if (listaProjetos.options[i].text != listaObjetos) {
-        var option = new Option(listaObjetos);
-        listaProjetos.appendChild(option);
-        
-        break;
-    } 
-}
-
 var funçaoPrincipal = function() { 
 
-    const opcaoSelecionada = listaProjetos.value
-
-    localStorage.setItem('ultimoProjeto', opcaoSelecionada)
+    const opcaoSelecionada = listaProjetos.selectedIndex
     
-    var rendaProjeto = Number(localStorage.getItem(`renda${opcaoSelecionada}`))
-    var despesaProjeto = Number(localStorage.getItem(`despesa${opcaoSelecionada}`))
-    var resultadoFinalProjeto = rendaProjeto - despesaProjeto
+    localStorage.setItem('ultimoProjeto', opcaoSelecionada)
 
+    for (i in projetosLocalStorage) {
+        var projetos = projetosLocalStorage[i]
+        console.log(ultimoProjetoSelecionado)
+        if (projetos.id == ultimoProjetoSelecionado) {
+            //console.log(projetos.id)
+            var saldoInicialProjeto = projetos.saldoinicial
+            //console.log(saldoInicialProjeto)
+            for (o in projetos) {
+                //console.log(o)
+                var projetoSelecionado = projetos[o]               
+                
+                if (projetoSelecionado.valorRenda) {
+                    var rendaProjeto = projetoSelecionado.valorRenda
+                    //console.log(rendaProjeto)
+                }
+                if (projetoSelecionado.valorDespesa) {
+                    var despesaProjeto = projetoSelecionado.valorDespesa
+                }
+            }
+        }
+    }
+    var resultadoFinalProjeto = (saldoInicialProjeto + rendaProjeto) - despesaProjeto
+    console.log(resultadoFinalProjeto)
+    console.log(saldoInicialProjeto)
+    console.log(rendaProjeto)
+    console.log(despesaProjeto)
+
+    
+    
     resultadoSaldoInicial.innerHTML = saldoInicialProjeto.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})
     resultadoRenda.innerHTML = rendaProjeto.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})
     resultadoDespesa.innerHTML = despesaProjeto.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})
@@ -56,8 +81,8 @@ var funçaoPrincipal = function() {
 }
 
 var ultimoProjetoSelecionadofunction = function() {
-    for (var i = 0; i < listaProjetos.options.length; i++) {
-        if (Number(listaProjetos.options[i].value) === ultimoProjetoSelecionado) {
+    for (i in listaProjetos) {
+        if (i === ultimoProjetoSelecionado) {
             listaProjetos.selectedIndex = i            
             break            
         } 
@@ -71,4 +96,4 @@ window.onload = function() {
 }
 listaProjetos.onchange = function() {
     funçaoPrincipal()
-} 
+}

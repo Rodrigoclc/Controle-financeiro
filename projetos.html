@@ -36,12 +36,12 @@
             }
 
             var totalProjetos = Number(localStorage.getItem(`TotalProjetos`))
-            console.log(listaObjetos)
 
             listaObjetos[nomeProjeto] = {}
-            listaObjetos[nomeProjeto]['id'] = (totalProjetos + 1)
+            listaObjetos[nomeProjeto]['id'] = (totalProjetos)
             listaObjetos[nomeProjeto]['saldoinicial'] = saldoInicial
-            localStorage.setItem('projetos', JSON.stringify(listaObjetos))           
+            localStorage.setItem('projetos', JSON.stringify(listaObjetos)) 
+            localStorage.setItem('TotalProjetos', (totalProjetos + 1))
         }
     </script>
 </body>

@@ -3,7 +3,7 @@
 // verificar qual vareavel é maior
 var nome = `banana`
 
-for (var i = 0; i < nome.length; i++) {
+for (var i in nome) {
     
     var letra = 'a'
     if (nome[i] == letra) {
@@ -14,4 +14,4 @@ for (var i = 0; i < nome.length; i++) {
     
    
 }
-//console.log(letra)
+console.log(letra)

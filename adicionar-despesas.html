@@ -13,7 +13,7 @@
     </header>
     <input aria-label="valor da despesa" type="number" name="AdicionarDespesas" id="inputAdicionarDespesas">
     <br>
-    <select aria-label="lista de despesas" name="seldespesasadd" id="seldespesasadd">
+    <select aria-label="lista de despesas" name="categoria" id="categoria">
         <option value="Mercado">Mercado</option>
         <option value="Restaurante">Restaurante</option>
         <option value="Agua">Água</option>        
@@ -27,19 +27,36 @@
     <script>
         var inputAdicionarDespesas = document.getElementById('inputAdicionarDespesas')
         var confirmarAddDespesas = document.querySelector('.imgconfirmar')
+        var categoria = document.querySelector('#categoria')
+        var descricao = document.querySelector('#descricao')
         var ultimoProjetoSelecionado = Number(localStorage.getItem('ultimoProjeto'))
-        var despesaProjeto = Number(localStorage.getItem(`despesa${ultimoProjetoSelecionado}`))        
+           
+        var projetosLocalStorage = JSON.parse(localStorage.getItem('projetos'))
 
         confirmarAddDespesas.onclick = function() {
 
-            if (inputAdicionarDespesas.value.length == 0 || inputAdicionarDespesas.value <= 0) {
-                
+            if (inputAdicionarDespesas.value.length == 0 || inputAdicionarDespesas.value <= 0) {                
                 alert('[ERRO] Digite um valor válido')        
-                } else {
-                despesaProjeto += Number(inputAdicionarDespesas.value)
-                localStorage.setItem(`despesa${ultimoProjetoSelecionado}`, despesaProjeto)
-                inputAdicionarDespesas.value = ''  
-                inputAdicionarDespesas.focus() 
+            } else {
+                
+                for (i in projetosLocalStorage) {
+                    
+                    var a = projetosLocalStorage[i]
+                    //console.log(a)
+                    if(a.id == ultimoProjetoSelecionado) {
+                        var categoriaSelecionada = categoria.value 
+                                              
+                        var addDespesa = a
+                        addDespesa['despesa'] = {} 
+                        addDespesa['despesa']['valorDespesa'] = Number(inputAdicionarDespesas.value)
+                        addDespesa['despesa']['categoria'] = categoriaSelecionada
+                        addDespesa['despesa']['descricao'] = descricao.value
+                        localStorage.setItem('projetos', JSON.stringify(projetosLocalStorage))
+                        console.log(addDespesa)
+                        inputAdicionarDespesas.value = ''  
+                        inputAdicionarDespesas.focus() 
+                    }
+                }                
             }            
         }
         
