@@ -6,8 +6,21 @@
     <title>Projetos</title>
     <link rel="stylesheet" href="estilo.css">
     <style>
-        div {
+        #nvProjeto {
             background-color: rgb(190, 187, 187);
+            width: 100px;
+            text-align: center;
+            margin: auto;
+        }
+
+        #divProjetos {            
+            
+            margin: auto;
+        }
+
+        div:hover {
+            background-color: rgb(114, 117, 116);
+            
         }
     </style>
 </head>
@@ -22,8 +35,10 @@
     </main>
         
     <script>
-        var nvProjeto = document.querySelector('#nvProjeto')
+        var nvProjeto = document.querySelector('#nvProjeto') 
+        var divProjetos = document.querySelector('#divProjetos')
         
+        var projetosLocalStorage = JSON.parse(localStorage.getItem('projetos'))
 
         nvProjeto.onclick = function() {
             
@@ -40,9 +55,22 @@
             listaObjetos[nomeProjeto] = {}
             listaObjetos[nomeProjeto]['id'] = (totalProjetos)
             listaObjetos[nomeProjeto]['saldoinicial'] = saldoInicial
+            listaObjetos[nomeProjeto]['despesa'] = {}
+            listaObjetos[nomeProjeto]['despesa']['valorDespesa'] = 0
+            listaObjetos[nomeProjeto]['renda'] = {}
+            listaObjetos[nomeProjeto]['renda']['valorRenda'] = 0
             localStorage.setItem('projetos', JSON.stringify(listaObjetos)) 
             localStorage.setItem('TotalProjetos', (totalProjetos + 1))
         }
+
+        for (var i in projetosLocalStorage) {
+        
+        var a = projetosLocalStorage[i]
+        
+        var paragrafo = document.createElement('p')
+        paragrafo.innerHTML = i
+        divProjetos.append(paragrafo)
+    }
     </script>
 </body>
 </html>
