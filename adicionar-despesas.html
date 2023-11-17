@@ -45,14 +45,16 @@
                     //console.log(a)
                     if(a.id == ultimoProjetoSelecionado) {
                         var categoriaSelecionada = categoria.value 
-                                              
+                        var objetoDespesa = (a.despesa)
+                        var chave = Number(Object.keys(objetoDespesa).length)                  
                         var addDespesa = a
-                        addDespesa['despesa'] = {} 
-                        addDespesa['despesa']['valorDespesa'] = Number(inputAdicionarDespesas.value)
-                        addDespesa['despesa']['categoria'] = categoriaSelecionada
-                        addDespesa['despesa']['descricao'] = descricao.value
+                        // addDespesa['despesa'] = {} 
+                        addDespesa['despesa'][++chave] = {}
+                        addDespesa['despesa'][chave]['valorDespesa'] = Number(inputAdicionarDespesas.value)
+                        addDespesa['despesa'][chave]['categoria'] = categoriaSelecionada
+                        addDespesa['despesa'][chave]['descricao'] = descricao.value
                         localStorage.setItem('projetos', JSON.stringify(projetosLocalStorage))
-                        console.log(addDespesa)
+                        console.log(projetosLocalStorage)
                         inputAdicionarDespesas.value = ''  
                         inputAdicionarDespesas.focus() 
                     }

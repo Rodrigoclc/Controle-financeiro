@@ -40,16 +40,19 @@
             } else {
 
                 for (i in projetosLocalStorage) {
-                    
+                    //console.log(i)
                     var a = projetosLocalStorage[i]
                     //console.log(a)
                     if(a.id == ultimoProjetoSelecionado) {
                         var categoriaSelecionada = categoria.value
-                        var addRenda = a
-                        addRenda['renda'] ={} 
-                        addRenda['renda']['valorRenda'] = Number(inputAdicionarRenda.value)
-                        addRenda['renda']['categoria'] = categoriaSelecionada
-                        addRenda['renda']['descricao'] = descricao.value
+                        var objetoRenda = (a.renda)
+                        var chave = Number(Object.keys(objetoRenda).length)                       
+                        var addRenda = a                        
+                        //addRenda['renda'] = {} 
+                        addRenda['renda'][++chave] = {}
+                        addRenda['renda'][chave]['valorRenda'] = Number(inputAdicionarRenda.value)
+                        addRenda['renda'][chave]['categoria'] = categoriaSelecionada
+                        addRenda['renda'][chave]['descricao'] = descricao.value
                         localStorage.setItem('projetos', JSON.stringify(projetosLocalStorage))
                         console.log(projetosLocalStorage)
                     }
