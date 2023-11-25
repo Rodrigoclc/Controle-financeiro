@@ -4,14 +4,13 @@
 var nome = `banana`
 
 for (var i in nome) {
-    
+    //console.log(i)
     var letra = 'a'
     if (nome[i] == letra) {
         letra += nome[i]
-    } else {
-
-    }
+        console.log(letra)
+    } 
     
    
 }
-console.log(letra)
+//console.log(letra)

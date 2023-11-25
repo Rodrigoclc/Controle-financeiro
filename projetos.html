@@ -4,23 +4,95 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projetos</title>
-    <link rel="stylesheet" href="estilo.css">
+    <!-- <link rel="stylesheet" href="estilo.css"> -->
     <style>
+
+        header {    
+            width: 400px;
+            margin: auto; 
+        }
+
+        h1 {
+            display: inline;
+        }
+
+        main > div > div > h2 {
+            cursor: pointer;
+        }
+
+        main > div > div > h2:hover {
+            color: rgb(85, 82, 82);
+        }
+
+        main {
+            background-color: rgb(206, 206, 206);
+            padding: 20px;
+            border-radius: 10px;
+            width: 430px;
+            margin: auto;
+        }
+
+        .divRes {
+            margin-bottom: 4px;
+            cursor: pointer;
+        }       
+
         #nvProjeto {
             background-color: rgb(190, 187, 187);
             width: 100px;
             text-align: center;
             margin: auto;
+            cursor: pointer;
         }
 
         #divProjetos {            
-            
             margin: auto;
+            
         }
 
-        div:hover {
+        #nvProjeto:hover {
             background-color: rgb(114, 117, 116);
             
+        }
+
+        #nvProjeto:active {
+            color: blue;
+        }
+
+        .voltar {
+            width: 25px;
+            height: 25px;
+        }
+
+        #modal2 {
+            width: 60%;
+            min-width: 350px;
+            min-height: 200px;
+            background-color: rgb(114, 117, 116);
+            padding: 30px;
+            border-radius: 20px;
+            display: none;
+        }
+
+        #modal {
+            width: 60%;
+            min-width: 350px;
+            min-height: 200px;
+            background-color: rgb(114, 117, 116);
+            padding: 30px;
+            border-radius: 20px;
+            display: none;
+        }
+
+        input {            
+            margin: 1px auto 1px auto;
+        }
+
+        #modal.abrir {
+            display: block;
+        }
+        #modal2.abrir2 {
+            display: block;
         }
     </style>
 </head>
@@ -29,51 +101,143 @@
         <a href="modelo.html"><img class="voltar" src="imagens/voltar.png" alt="voltar"></a>
         <h1>Projetos</h1>
     </header>
-    <main>
+    <main id="mainPrincipal">
         <div id= "nvProjeto">Novo projeto</div>
-        <div id="divProjetos">
+        <div id="divProjetos">            
+            <div id="modal2">
+                <h1>Atualizar</h1>
+                <p>Nome do projeto</p>
+                <input type="text" name="edNomeProjeto" id="edNomeProjeto">
+                <p>Saldo Inicial:</p>
+                <input type="number" name="edSaldoInicial" id="edSaldoInicial">
+                <br>
+                <input id="confirmar" type="button" value="Confirmar">
+                <input id="cancelar" type="button" value="Cancelar">                
+            </div>
+            <div id="modal">
+                <h2 id="selecionar">Selecionar</h2>
+                <hr>
+                <h2 id="atualizar">Atualizar</h2>
+                <hr>
+                <h2 id="excluir">Excluir</h2>
+            </div>
+            
     </main>
         
     <script>
-        var nvProjeto = document.querySelector('#nvProjeto') 
-        var divProjetos = document.querySelector('#divProjetos')
         
-        var projetosLocalStorage = JSON.parse(localStorage.getItem('projetos'))
+        let nvProjeto = document.querySelector('#nvProjeto');
+        let divProjetos = document.querySelector('#divProjetos');
+        let mainPrincipal = document.querySelector('#mainPrincipal');
+        let projetosLocalStorage = JSON.parse(localStorage.getItem('projetos'));
+        let ultimoProjetoSelecionado = Number(localStorage.getItem('ultimoProjeto'));
+        let listaObjetos = {};
 
-        nvProjeto.onclick = function() {
+        // Cria novos projetos
+        let criarNovoProjeto = function() {
             
-            var nomeProjeto = prompt('Digite o nome do Projeto')
-            var saldoInicial = Number(prompt(`Digite o saldo inicial do Projeto "${nomeProjeto}"`))
-            var listaObjetos = {}
+            let nomeProjeto = prompt('Digite o nome do Projeto');
+            let saldoInicial = Number(prompt(`Digite o saldo inicial do Projeto "${nomeProjeto}"`));
+            
             
             if (localStorage.projetos) {
-                listaObjetos = JSON.parse(localStorage.getItem('projetos')) 
+                listaObjetos = JSON.parse(localStorage.getItem('projetos'));
             }
 
-            var totalProjetos = Number(localStorage.getItem(`TotalProjetos`))
+            let totalProjetos = Number(localStorage.getItem(`TotalProjetos`));
 
-            listaObjetos[nomeProjeto] = {}
-            listaObjetos[nomeProjeto]['id'] = (totalProjetos)
-            listaObjetos[nomeProjeto]['saldoinicial'] = saldoInicial
-            listaObjetos[nomeProjeto]['despesa'] = {}
-            listaObjetos[nomeProjeto]['despesa']['idDespesa'] = {}
-            listaObjetos[nomeProjeto]['despesa']['idDespesa']['valorDespesa'] = 0
-            listaObjetos[nomeProjeto]['renda'] = {}
-            listaObjetos[nomeProjeto]['renda']['idRenda'] = {}
-            listaObjetos[nomeProjeto]['renda']['idRenda']['valorRenda'] = 0
-            localStorage.setItem('projetos', JSON.stringify(listaObjetos)) 
-            localStorage.setItem('TotalProjetos', (totalProjetos + 1))
-            console.log(listaObjetos)
+            listaObjetos[nomeProjeto] = {};
+            listaObjetos[nomeProjeto]['id'] = (totalProjetos);
+            listaObjetos[nomeProjeto]['saldoinicial'] = saldoInicial;
+            listaObjetos[nomeProjeto]['despesa'] = {};
+            listaObjetos[nomeProjeto]['despesa']['1'] = {};
+            listaObjetos[nomeProjeto]['despesa']['1']['valorDespesa'] = 0;
+            listaObjetos[nomeProjeto]['renda'] = {};
+            listaObjetos[nomeProjeto]['renda']['1'] = {};
+            listaObjetos[nomeProjeto]['renda']['1']['valorRenda'] = 0;
+            localStorage.setItem('projetos', JSON.stringify(listaObjetos));
+            localStorage.setItem('TotalProjetos', (totalProjetos + 1));
+            console.log(listaObjetos);
         }
-
-        for (var i in projetosLocalStorage) {
         
-        var a = projetosLocalStorage[i]
+        // Resgata os valores dos projetos, cria as divs e mostra os projetos com o saldo final
+        let despesaProjeto = 0;
+        let rendaProjeto = 0;
+        let idDivRes = 0;
+        for (i in projetosLocalStorage) {            
+            // loop para resgatar as despesas
+            let todasAsDespesas = projetosLocalStorage[i].despesa;
+            for (indice in todasAsDespesas) {
+                despesaProjeto += Number(todasAsDespesas[indice].valorDespesa);
+            }
+            // loop para resgatar as rendas
+            let todasAsRendas = projetosLocalStorage[i].renda;
+            for (indice in todasAsRendas) {                
+                rendaProjeto += Number(todasAsRendas[indice].valorRenda);
+            }
+            // resgata o saldo inicial
+            let resultadoFinalProjeto = (projetosLocalStorage[i].saldoinicial + rendaProjeto) - despesaProjeto;
+            
+            let divRes = document.createElement('div');
+            divRes.setAttribute('class', 'divRes');
+            divRes.setAttribute('id', idDivRes++);
+            divRes.innerHTML = `Saldo de <strong>${i}</strong> ${resultadoFinalProjeto.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}`;
+            mainPrincipal.append(divRes);
+        }
         
-        var paragrafo = document.createElement('p')
-        paragrafo.innerHTML = i
-        divProjetos.append(paragrafo)
-    }
+        
+        let chaveDoObjeto = Object.keys(projetosLocalStorage);
+        let divs = document.getElementsByClassName('divRes');
+        for (i in divs) {
+            divs[i].onclick = function() {
+                
+                //projetosLocalStorage = JSON.parse(localStorage.getItem('projetos'));
+                const modal = document.querySelector('#modal');
+                modal.classList.add('abrir');
+                modal.addEventListener('click' , (e) => {
+                    if ((e.target.id == 'selecionar') || (e.target.id == 'atualizar') || (e.target.id == 'excluir')) {
+                        modal.classList.remove('abrir')
+                    }
+                })
+                let projetoSelecionado = Number(this.id) + 1;
+                document.querySelector('#selecionar').onclick = function() {
+                    localStorage.setItem('ultimoProjeto', projetoSelecionado);
+                }
+                document.querySelector('#atualizar').onclick = function() {
+                    
+                    let projetoNome = chaveDoObjeto[projetoSelecionado - 1];
+                    
+                    const modal2 = document.querySelector('#modal2');
+                    modal2.classList.add('abrir2');
+                    modal2.addEventListener('click' , (e) => {
+                    if ((e.target.id == 'confirmar') || (e.target.id == 'cancelar')) {
+                        modal2.classList.remove('abrir2')
+                    }
+                })
+                    let edSaldoInicial = document.getElementById('edSaldoInicial')//.placeholder = si
+                    const edNomeProjeto = document.querySelector('#edNomeProjeto')//.placeholder = projetoNome
+                    
+                    document.querySelector('#confirmar').onclick = function() { 
+                        projetosLocalStorage[projetoNome][`saldoinicial`] = Number(edSaldoInicial.value);
+                        projetosLocalStorage[edNomeProjeto.value] = projetosLocalStorage[projetoNome];
+                        delete projetosLocalStorage[projetoNome];
+                        localStorage.setItem('projetos', JSON.stringify(projetosLocalStorage));
+                    }
+                }
+                document.querySelector('#excluir').onclick = function() {
+                    alert('excluir')
+                }
+            }
+        }
+        (function() {
+            ()=> {
+                mostrarProjetos()
+            }
+            nvProjeto.onclick = ()=> {
+                criarNovoProjeto()
+            }
+                        
+        })()
     </script>
 </body>
 </html>

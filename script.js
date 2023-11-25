@@ -20,7 +20,7 @@ if (projetosLocalStorage == null) {
         listaProjetos.appendChild(option)        
         // criando os projetos com configurações padrões
         listaObjetos[primeirosOptions[i]] = {}
-        listaObjetos[primeirosOptions[i]]['id'] = i
+        listaObjetos[primeirosOptions[i]]['id'] = Number(i) + 1
         listaObjetos[primeirosOptions[i]]['saldoinicial'] = 0
         listaObjetos[primeirosOptions[i]]['despesa'] = {}
         listaObjetos[primeirosOptions[i]]['despesa'][chave] = {}
@@ -42,7 +42,7 @@ localStorage.setItem('TotalProjetos', listaProjetos.length)
 
 var funçaoPrincipal = function() { 
     // verifica qual foi o projeto selecionado
-    const opcaoSelecionada = listaProjetos.selectedIndex
+    const opcaoSelecionada = (listaProjetos.selectedIndex) + 1
     // salva qual projeto está selecionado
     localStorage.setItem('ultimoProjeto', opcaoSelecionada)
     ultimoProjetoSelecionado = Number(localStorage.getItem('ultimoProjeto'))
