@@ -30,7 +30,7 @@
         var categoria = document.querySelector('#categoria')
         var descricao = document.querySelector('#descricao')
         var ultimoProjetoSelecionado = Number(localStorage.getItem('ultimoProjeto'))
-           
+        const nomeUltimoProjeto = localStorage.getItem('nomeUltimoProjeto');
         var projetosLocalStorage = JSON.parse(localStorage.getItem('projetos'))
 
         confirmarAddDespesas.onclick = function() {
@@ -41,22 +41,22 @@
                 
                 for (i in projetosLocalStorage) {
                     
-                    var a = projetosLocalStorage[i]
-                    //console.log(a)
-                    if(a.id == ultimoProjetoSelecionado) {
+                    if(i === nomeUltimoProjeto) {
+                        
                         var categoriaSelecionada = categoria.value 
-                        var objetoDespesa = (a.despesa)
+                        var objetoDespesa = projetosLocalStorage[i].despesa
                         var chave = Number(Object.keys(objetoDespesa).length)                  
-                        var addDespesa = a
-                        // addDespesa['despesa'] = {} 
+                        var addDespesa = projetosLocalStorage[i]
                         addDespesa['despesa'][++chave] = {}
                         addDespesa['despesa'][chave]['valorDespesa'] = Number(inputAdicionarDespesas.value)
                         addDespesa['despesa'][chave]['categoria'] = categoriaSelecionada
                         addDespesa['despesa'][chave]['descricao'] = descricao.value
-                        localStorage.setItem('projetos', JSON.stringify(projetosLocalStorage))
                         console.log(projetosLocalStorage)
+                        localStorage.setItem('projetos', JSON.stringify(projetosLocalStorage))
                         inputAdicionarDespesas.value = ''  
-                        inputAdicionarDespesas.focus() 
+                        inputAdicionarDespesas.focus()
+                        break;
+                        
                     }
                 }                
             }            

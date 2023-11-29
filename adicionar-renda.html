@@ -32,34 +32,34 @@
         var ultimoProjetoSelecionado = Number(localStorage.getItem('ultimoProjeto'))
 
         var projetosLocalStorage = JSON.parse(localStorage.getItem('projetos'))
-
+        const nomeUltimoProjeto = localStorage.getItem('nomeUltimoProjeto');
+        
         confirmarAddRenda.onclick = function() {
 
             if (inputAdicionarRenda.value.length == 0 || inputAdicionarRenda.value <= 0) {
                 alert('[ERRO] Digite um valor válido')        
             } else {
 
-                for (i in projetosLocalStorage) {
-                    //console.log(i)
-                    var a = projetosLocalStorage[i]
-                    //console.log(a)
-                    if(a.id == ultimoProjetoSelecionado) {
-                        var categoriaSelecionada = categoria.value
-                        var objetoRenda = (a.renda)
+                for (i in projetosLocalStorage) {            
+                    
+                    if(i === nomeUltimoProjeto) {
+
+                        var categoriaSelecionada = categoria.value                        
+                        var objetoRenda = projetosLocalStorage[i].renda
                         var chave = Number(Object.keys(objetoRenda).length)                       
-                        var addRenda = a                        
-                        //addRenda['renda'] = {} 
+                        var addRenda = projetosLocalStorage[i]
                         addRenda['renda'][++chave] = {}
                         addRenda['renda'][chave]['valorRenda'] = Number(inputAdicionarRenda.value)
                         addRenda['renda'][chave]['categoria'] = categoriaSelecionada
                         addRenda['renda'][chave]['descricao'] = descricao.value
-                        localStorage.setItem('projetos', JSON.stringify(projetosLocalStorage))
                         console.log(projetosLocalStorage)
+                        localStorage.setItem('projetos', JSON.stringify(projetosLocalStorage))
+                        break;
+                        inputAdicionarRenda.value = ''  
+                        inputAdicionarRenda.focus()
                     }
                 }               
-            }
-            inputAdicionarRenda.value = ''  
-            inputAdicionarRenda.focus()
+            }            
         }        
     </script>
     

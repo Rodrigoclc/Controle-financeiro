@@ -188,6 +188,7 @@
         
         let chaveDoObjeto = Object.keys(projetosLocalStorage);
         let divs = document.getElementsByClassName('divRes');
+        console.log(chaveDoObjeto)
         for (i in divs) {
             divs[i].onclick = function() {
                 
@@ -199,13 +200,14 @@
                         modal.classList.remove('abrir')
                     }
                 })
-                let projetoSelecionado = Number(this.id) + 1;
+                let projetoSelecionado = Number(this.id);
+                let projetoNome = chaveDoObjeto[projetoSelecionado];
                 document.querySelector('#selecionar').onclick = function() {
                     localStorage.setItem('ultimoProjeto', projetoSelecionado);
                 }
                 document.querySelector('#atualizar').onclick = function() {
                     
-                    let projetoNome = chaveDoObjeto[projetoSelecionado - 1];
+                    
                     
                     const modal2 = document.querySelector('#modal2');
                     modal2.classList.add('abrir2');
@@ -225,8 +227,8 @@
                     }
                 }
                 document.querySelector('#excluir').onclick = function() {
-                    alert('excluir')
-                }
+                    delete projetosLocalStorage[projetoNome];
+                    localStorage.setItem('projetos', JSON.stringify(projetosLocalStorage));                }
             }
         }
         (function() {

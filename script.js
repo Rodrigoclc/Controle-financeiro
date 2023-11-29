@@ -42,31 +42,28 @@ localStorage.setItem('TotalProjetos', listaProjetos.length)
 
 var funçaoPrincipal = function() { 
     // verifica qual foi o projeto selecionado
-    const opcaoSelecionada = (listaProjetos.selectedIndex) + 1
+    const opcaoSelecionada = (listaProjetos.selectedIndex)
+    console.log(listaProjetos.value)
+    localStorage.setItem('nomeUltimoProjeto', listaProjetos.value)
     // salva qual projeto está selecionado
     localStorage.setItem('ultimoProjeto', opcaoSelecionada)
     ultimoProjetoSelecionado = Number(localStorage.getItem('ultimoProjeto'))
     // loop para resgatar renda, despesa e saldo inicial
     var despesaProjeto = 0
     var rendaProjeto = 0
-    for (i in projetosLocalStorage) {
-        var projetos = projetosLocalStorage[i]        
-        if (projetos.id == ultimoProjetoSelecionado) {
-            // loop para resgatar as despesas
-            var todasAsDespesas = projetos.despesa
-            for (indice in todasAsDespesas) {
-                despesaProjeto += Number(todasAsDespesas[indice].valorDespesa)
-                console.log(despesaProjeto)
-            }
-            // loop para resgatar as rendas
-            var todasAsRendas = projetos.renda
-            for (indice in todasAsRendas) {                
-                rendaProjeto += Number(todasAsRendas[indice].valorRenda)
-            }
-            // resgata o saldo inicial
-            var saldoInicialProjeto = projetos.saldoinicial
+    let chaveDoObjeto = Object.keys(projetosLocalStorage);
+    if (chaveDoObjeto[ultimoProjetoSelecionado] === listaProjetos.value) {
+        //console.log(projetosLocalStorage[listaProjetos.value])
+        var todasAsDespesas = projetosLocalStorage[listaProjetos.value]['despesa']
+        for(i in todasAsDespesas) {
+            despesaProjeto += todasAsDespesas[i].valorDespesa;
+        }
+        var todasAsRendas = projetosLocalStorage[listaProjetos.value]['renda']
+        for (i in todasAsRendas) {
+            rendaProjeto += todasAsRendas[i].valorRenda;
         }
     }
+    var saldoInicialProjeto = projetosLocalStorage[listaProjetos.value]['saldoinicial'];
     // somatoria do saldo final do projeto
     var resultadoFinalProjeto = (saldoInicialProjeto + rendaProjeto) - despesaProjeto
     // mostra os valores dos projetos
