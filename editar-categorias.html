@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Categorias</title>
+    <style>
+        header {    
+            width: 400px;
+            margin: auto; 
+        }
+
+        h1 {
+            display: inline;
+        }
+
+        main {
+            background-color: #cecece;
+            padding: 20px;
+            border-radius: 10px;
+            width: 430px;
+            margin: auto;
+        }
+
+        .voltar {
+            width: 25px;
+            height: 25px;
+        }
+
+        #edCategoria {
+            text-align: center;
+            width: 115px;
+            margin: auto;
+            border-color: black;
+            cursor: pointer;
+        }
+
+        .rendaDespesa {
+            width: 200px;
+            margin: 5px;
+            display: inline-block;
+            text-align: center;
+            width: 200px;
+            border-radius: 5%;
+            cursor: pointer;
+        }
+
+        .rendaDespesa:active {
+            color: blue;
+            background-color: rgb(114, 117, 116);
+        }
+
+        .rendaDespesa:before {
+            background-color: #727574;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="opcoes.html"><img class="voltar" src="imagens/voltar.png" alt="voltar"></a>
+        <h1>Editar Categorias</h1>
+    </header>
+    <main>
+        <div id="edCategoria">Editar Categorias</div>
+        <span id="renda" class="rendaDespesa">Rendas</span>
+        <span id="despesa" class="rendaDespesa">Despesas</span>
+        <div id="categorias"></div>
+    </main>
+
+    <script>
+        const rendaDespesa = document.getElementsByClassName('rendaDespesa');
+        const renda = document.querySelector('#renda');
+        const despesa = document.querySelector('#despesa');
+        const categorias = document.querySelector('#categorias');
+        const categoriasDespesaLocalStorage = localStorage.getItem('categoriasDespesa');
+        const categoriasRendaLocalStorage = localStorage.getItem('categoriasRenda');
+
+
+        for (i in rendaDespesa) {
+            rendaDespesa[i].onclick = function() {
+                const rendaOuDespesa = this.id;
+                //console.log(rendaOuDespesa)
+                if(rendaOuDespesa === 'renda') {
+                    event.target.style.backgroundColor = '#727574';
+                    despesa.style.backgroundColor = '#cecece';
+                    const categoriasRendaaArray = categoriasRendaLocalStorage.split('-')
+                    for (i of categoriasRendaaArray) {
+                        const divRes = document.createElement('div');
+                        divRes.innerHTML = i
+                        categorias.append(divRes)
+                    }
+                } else {
+                    event.target.style.backgroundColor = '#727574';
+                    renda.style.backgroundColor = '#cecece';
+                    const categoriasDespesaArray = categoriasDespesaLocalStorage.split('-')
+                    for (i of categoriasDespesaArray) {
+                        const divRes = document.createElement('div');
+                        divRes.innerHTML = i
+                        categorias.append(divRes)
+                    }
+                }
+            }
+        }
+
+    </script>
+</body>
+</html>

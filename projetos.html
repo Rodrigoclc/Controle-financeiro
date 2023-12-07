@@ -126,25 +126,24 @@
         
     <script>
         
-        let nvProjeto = document.querySelector('#nvProjeto');
-        let divProjetos = document.querySelector('#divProjetos');
-        let mainPrincipal = document.querySelector('#mainPrincipal');
-        let projetosLocalStorage = JSON.parse(localStorage.getItem('projetos'));
-        let ultimoProjetoSelecionado = Number(localStorage.getItem('ultimoProjeto'));
-        let listaObjetos = {};
+        const nvProjeto = document.querySelector('#nvProjeto');
+        const divProjetos = document.querySelector('#divProjetos');
+        const mainPrincipal = document.querySelector('#mainPrincipal');
+        const projetosLocalStorage = JSON.parse(localStorage.getItem('projetos'));
+        const listaObjetos = {};
 
         // Cria novos projetos
-        let criarNovoProjeto = function() {
+        const criarNovoProjeto = function() {
             
-            let nomeProjeto = prompt('Digite o nome do Projeto');
-            let saldoInicial = Number(prompt(`Digite o saldo inicial do Projeto "${nomeProjeto}"`));
+            const nomeProjeto = prompt('Digite o nome do Projeto');
+            const saldoInicial = Number(prompt(`Digite o saldo inicial do Projeto "${nomeProjeto}"`));
             
             
             if (localStorage.projetos) {
                 listaObjetos = JSON.parse(localStorage.getItem('projetos'));
             }
 
-            let totalProjetos = Number(localStorage.getItem(`TotalProjetos`));
+            const totalProjetos = Number(localStorage.getItem(`TotalProjetos`));
 
             listaObjetos[nomeProjeto] = {};
             listaObjetos[nomeProjeto]['id'] = (totalProjetos);
@@ -166,19 +165,19 @@
         let idDivRes = 0;
         for (i in projetosLocalStorage) {            
             // loop para resgatar as despesas
-            let todasAsDespesas = projetosLocalStorage[i].despesa;
+            const todasAsDespesas = projetosLocalStorage[i].despesa;
             for (indice in todasAsDespesas) {
                 despesaProjeto += Number(todasAsDespesas[indice].valorDespesa);
             }
             // loop para resgatar as rendas
-            let todasAsRendas = projetosLocalStorage[i].renda;
+            const todasAsRendas = projetosLocalStorage[i].renda;
             for (indice in todasAsRendas) {                
                 rendaProjeto += Number(todasAsRendas[indice].valorRenda);
             }
             // resgata o saldo inicial
-            let resultadoFinalProjeto = (projetosLocalStorage[i].saldoinicial + rendaProjeto) - despesaProjeto;
+            const resultadoFinalProjeto = (projetosLocalStorage[i].saldoinicial + rendaProjeto) - despesaProjeto;
             
-            let divRes = document.createElement('div');
+            const divRes = document.createElement('div');
             divRes.setAttribute('class', 'divRes');
             divRes.setAttribute('id', idDivRes++);
             divRes.innerHTML = `Saldo de <strong>${i}</strong> ${resultadoFinalProjeto.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}`;
@@ -186,9 +185,8 @@
         }
         
         
-        let chaveDoObjeto = Object.keys(projetosLocalStorage);
-        let divs = document.getElementsByClassName('divRes');
-        console.log(chaveDoObjeto)
+        const chaveDoObjeto = Object.keys(projetosLocalStorage);
+        const divs = document.getElementsByClassName('divRes');
         for (i in divs) {
             divs[i].onclick = function() {
                 
@@ -197,46 +195,46 @@
                 modal.classList.add('abrir');
                 modal.addEventListener('click' , (e) => {
                     if ((e.target.id == 'selecionar') || (e.target.id == 'atualizar') || (e.target.id == 'excluir')) {
-                        modal.classList.remove('abrir')
+                        modal.classList.remove('abrir');
                     }
                 })
-                let projetoSelecionado = Number(this.id);
-                let projetoNome = chaveDoObjeto[projetoSelecionado];
+                const projetoSelecionado = Number(this.id);
+                const projetoNome = chaveDoObjeto[projetoSelecionado];
                 document.querySelector('#selecionar').onclick = function() {
                     localStorage.setItem('ultimoProjeto', projetoSelecionado);
                 }
-                document.querySelector('#atualizar').onclick = function() {
-                    
-                    
+                document.querySelector('#atualizar').onclick = function() {                    
                     
                     const modal2 = document.querySelector('#modal2');
                     modal2.classList.add('abrir2');
                     modal2.addEventListener('click' , (e) => {
-                    if ((e.target.id == 'confirmar') || (e.target.id == 'cancelar')) {
-                        modal2.classList.remove('abrir2')
-                    }
-                })
-                    let edSaldoInicial = document.getElementById('edSaldoInicial')//.placeholder = si
+                        if ((e.target.id == 'confirmar') || (e.target.id == 'cancelar')) {
+                            modal2.classList.remove('abrir2')
+                        }
+                    })
+                    const edSaldoInicial = document.getElementById('edSaldoInicial')//.placeholder = si
                     const edNomeProjeto = document.querySelector('#edNomeProjeto')//.placeholder = projetoNome
                     
                     document.querySelector('#confirmar').onclick = function() { 
                         projetosLocalStorage[projetoNome][`saldoinicial`] = Number(edSaldoInicial.value);
                         projetosLocalStorage[edNomeProjeto.value] = projetosLocalStorage[projetoNome];
                         delete projetosLocalStorage[projetoNome];
+                        console.log(projetosLocalStorage);
                         localStorage.setItem('projetos', JSON.stringify(projetosLocalStorage));
                     }
                 }
                 document.querySelector('#excluir').onclick = function() {
                     delete projetosLocalStorage[projetoNome];
-                    localStorage.setItem('projetos', JSON.stringify(projetosLocalStorage));                }
+                    localStorage.setItem('projetos', JSON.stringify(projetosLocalStorage));                
+                }
             }
         }
         (function() {
             ()=> {
-                mostrarProjetos()
+                mostrarProjetos();
             }
             nvProjeto.onclick = ()=> {
-                criarNovoProjeto()
+                criarNovoProjeto();
             }
                         
         })()

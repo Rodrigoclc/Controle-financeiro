@@ -1,16 +1,17 @@
 // agrupar letra iguais em uma variavel
     // compara cada letra
 // verificar qual vareavel é maior
-var nome = `banana`
+const nome = `casa`;
+const letra = [];
+const repitidas = []
 
-for (var i in nome) {
+for (i of nome) {
     //console.log(i)
-    var letra = 'a'
-    if (nome[i] == letra) {
-        letra += nome[i]
-        console.log(letra)
-    } 
-    
-   
+    letra.push(i);
+    console.log(letra.length)
+    repitidas.push(letra.indexOf(i));
 }
-//console.log(letra)
+const tamanhoRepitidas = Number(repitidas.length)
+console.log(tamanhoRepitidas)
+
+

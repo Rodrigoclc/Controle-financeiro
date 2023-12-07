@@ -1,82 +1,82 @@
 // variaveis dos elementos HTML
-var listaProjetos = document.getElementById('lista-projetos')
-var resultadoSaldoInicial = document.getElementById('resultadoSaldoInicial')
-var resultadoRenda = document.getElementById('resultadoRenda')
-var resultadoDespesa = document.getElementById('resultadoDespesa')
-var resultadoSaldoFinal = document.getElementById('resultadoSaldoFinal')
+const listaProjetos = document.getElementById('lista-projetos');
+const resultadoSaldoInicial = document.getElementById('resultadoSaldoInicial');
+const resultadoRenda = document.getElementById('resultadoRenda');
+const resultadoDespesa = document.getElementById('resultadoDespesa');
+const resultadoSaldoFinal = document.getElementById('resultadoSaldoFinal');
 // variaveis trazidas do localStorage
-var ultimoProjetoSelecionado = Number(localStorage.getItem('ultimoProjeto'))
-var projetosLocalStorage = JSON.parse(localStorage.getItem('projetos'))
+let ultimoProjetoSelecionado = Number(localStorage.getItem('ultimoProjeto'));
+let projetosLocalStorage = JSON.parse(localStorage.getItem('projetos'));
 // condição para criar ou mostrar projetos
-var chave = 1
+let chave = 1;
 if (projetosLocalStorage == null) {
     // projetos padrões
-    var primeirosOptions = ['Projeto 1', 'Projeto 2', 'Projeto 3']
-    var listaObjetos = {}
+    const primeirosOptions = ['Projeto 1', 'Projeto 2', 'Projeto 3'];
+    projetosLocalStorage = {};
     // loop para criar os projetos
-    for (var i in primeirosOptions) {
+    for (i in primeirosOptions) {
         // criando os options
-        var option = new Option(primeirosOptions[i])
-        listaProjetos.appendChild(option)        
+        let option = new Option(primeirosOptions[i]);
+        listaProjetos.appendChild(option);
         // criando os projetos com configurações padrões
-        listaObjetos[primeirosOptions[i]] = {}
-        listaObjetos[primeirosOptions[i]]['id'] = Number(i) + 1
-        listaObjetos[primeirosOptions[i]]['saldoinicial'] = 0
-        listaObjetos[primeirosOptions[i]]['despesa'] = {}
-        listaObjetos[primeirosOptions[i]]['despesa'][chave] = {}
-        listaObjetos[primeirosOptions[i]]['despesa'][chave]['valorDespesa'] = 0
-        listaObjetos[primeirosOptions[i]]['renda'] = {}
-        listaObjetos[primeirosOptions[i]]['renda'][chave] = {}
-        listaObjetos[primeirosOptions[i]]['renda'][chave]['valorRenda'] = 0
-        localStorage.setItem('projetos', JSON.stringify(listaObjetos))
+        projetosLocalStorage[primeirosOptions[i]] = {};
+        projetosLocalStorage[primeirosOptions[i]]['id'] = Number(i) + 1;
+        projetosLocalStorage[primeirosOptions[i]]['saldoinicial'] = 0;
+        projetosLocalStorage[primeirosOptions[i]]['despesa'] = {};
+        projetosLocalStorage[primeirosOptions[i]]['despesa'][chave] = {};
+        projetosLocalStorage[primeirosOptions[i]]['despesa'][chave]['valorDespesa'] = 0;
+        projetosLocalStorage[primeirosOptions[i]]['renda'] = {};
+        projetosLocalStorage[primeirosOptions[i]]['renda'][chave] = {};
+        projetosLocalStorage[primeirosOptions[i]]['renda'][chave]['valorRenda'] = 0;
+        localStorage.setItem('projetos', JSON.stringify(projetosLocalStorage));
     }
+    listaProjetos.selectedIndex = 1
 } else {
     // loop para mostrar os projetos existentes
-    for (var i in projetosLocalStorage) {        
-        var option = new Option(i)
-        listaProjetos.appendChild(option)
+    for (i in projetosLocalStorage) {        
+        let option = new Option(i);
+        listaProjetos.appendChild(option);
     }
 }
 // salvando a quantidade de projetos existentes
-localStorage.setItem('TotalProjetos', listaProjetos.length)
+localStorage.setItem('TotalProjetos', listaProjetos.length);
 
-var funçaoPrincipal = function() { 
+let funçaoPrincipal = function() { 
     // verifica qual foi o projeto selecionado
-    const opcaoSelecionada = (listaProjetos.selectedIndex)
-    console.log(listaProjetos.value)
-    localStorage.setItem('nomeUltimoProjeto', listaProjetos.value)
+    const opcaoSelecionada = (listaProjetos.selectedIndex);
+    localStorage.setItem('nomeUltimoProjeto', listaProjetos.value);
     // salva qual projeto está selecionado
-    localStorage.setItem('ultimoProjeto', opcaoSelecionada)
-    ultimoProjetoSelecionado = Number(localStorage.getItem('ultimoProjeto'))
+    localStorage.setItem('ultimoProjeto', opcaoSelecionada);
+    ultimoProjetoSelecionado = Number(localStorage.getItem('ultimoProjeto'));
     // loop para resgatar renda, despesa e saldo inicial
-    var despesaProjeto = 0
-    var rendaProjeto = 0
-    let chaveDoObjeto = Object.keys(projetosLocalStorage);
+    let despesaProjeto = 0;
+    let rendaProjeto = 0;
+    const chaveDoObjeto = Object.keys(projetosLocalStorage);
     if (chaveDoObjeto[ultimoProjetoSelecionado] === listaProjetos.value) {
         //console.log(projetosLocalStorage[listaProjetos.value])
-        var todasAsDespesas = projetosLocalStorage[listaProjetos.value]['despesa']
+        const todasAsDespesas = projetosLocalStorage[listaProjetos.value]['despesa'];
         for(i in todasAsDespesas) {
             despesaProjeto += todasAsDespesas[i].valorDespesa;
         }
-        var todasAsRendas = projetosLocalStorage[listaProjetos.value]['renda']
+        const todasAsRendas = projetosLocalStorage[listaProjetos.value]['renda'];
         for (i in todasAsRendas) {
             rendaProjeto += todasAsRendas[i].valorRenda;
         }
     }
-    var saldoInicialProjeto = projetosLocalStorage[listaProjetos.value]['saldoinicial'];
+    const saldoInicialProjeto = projetosLocalStorage[listaProjetos.value]['saldoinicial'];
     // somatoria do saldo final do projeto
-    var resultadoFinalProjeto = (saldoInicialProjeto + rendaProjeto) - despesaProjeto
+    const resultadoFinalProjeto = (saldoInicialProjeto + rendaProjeto) - despesaProjeto;
     // mostra os valores dos projetos
-    resultadoSaldoInicial.innerHTML = saldoInicialProjeto.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})
-    resultadoRenda.innerHTML = rendaProjeto.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})
-    resultadoDespesa.innerHTML = despesaProjeto.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})
-    resultadoSaldoFinal.innerHTML = resultadoFinalProjeto.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})
+    resultadoSaldoInicial.innerHTML = saldoInicialProjeto.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'});
+    resultadoRenda.innerHTML = rendaProjeto.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'});
+    resultadoDespesa.innerHTML = despesaProjeto.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'});
+    resultadoSaldoFinal.innerHTML = resultadoFinalProjeto.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'});
 }
 
 window.onload = function() {
-    listaProjetos.selectedIndex = ultimoProjetoSelecionado
-    funçaoPrincipal()   
+    listaProjetos.selectedIndex = ultimoProjetoSelecionado;
+    funçaoPrincipal();
 }
 listaProjetos.onchange = function() {
-    funçaoPrincipal()
+    funçaoPrincipal();
 }

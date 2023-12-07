@@ -14,9 +14,7 @@
     <input aria-label="valor da renda" type="number" name="AdicionarRenda" id="inputAdicionarRenda">
     <br>
     <select aria-label="lista de renda" name="categoria" id="categoria">
-        <option value="Mercado">Mercado</option>
-        <option value="Restaurante">Restaurante</option>
-        <option value="Agua">Água</option>        
+             
     </select>
     <br>
     <input aria-label="descricao" type="text" name="descricao" id="descricao">
@@ -25,38 +23,52 @@
     <img class="imgconfirmar" src="imagens/foto-confirmar.png" alt="confirmar">
     
     <script>
-        var inputAdicionarRenda = document.getElementById('inputAdicionarRenda')
-        var confirmarAddRenda = document.querySelector('.imgconfirmar')
-        var descricao = document.querySelector('#descricao')
-        var categoria = document.querySelector('#categoria')
-        var ultimoProjetoSelecionado = Number(localStorage.getItem('ultimoProjeto'))
-
-        var projetosLocalStorage = JSON.parse(localStorage.getItem('projetos'))
+        const inputAdicionarRenda = document.getElementById('inputAdicionarRenda');
+        const confirmarAddRenda = document.querySelector('.imgconfirmar');
+        const descricao = document.querySelector('#descricao');
+        const categoria = document.querySelector('#categoria');
+        const projetosLocalStorage = JSON.parse(localStorage.getItem('projetos'));
         const nomeUltimoProjeto = localStorage.getItem('nomeUltimoProjeto');
+        const categoriasRendaLocalStorage = localStorage.getItem('categoriasRenda');
+
+        if(categoriasRendaLocalStorage == null) {   
+            const categoriasPadrao = ['Salário', 'Dividendos', 'Vendas', 'Emprestimo'];         
+            localStorage.setItem('categoriasRenda', categoriasPadrao.join('-'));
+            for (i of categoriasPadrao) {
+                const option = new Option(i);
+                categoria.appendChild(option);
+            }
+        } else {
+            const categoriasRendaaArray = categoriasRendaLocalStorage.split('-')
+            for (i of categoriasRendaaArray) {
+                const option = new Option(i);
+                categoria.appendChild(option);
+            }
+        }
         
         confirmarAddRenda.onclick = function() {
 
             if (inputAdicionarRenda.value.length == 0 || inputAdicionarRenda.value <= 0) {
-                alert('[ERRO] Digite um valor válido')        
+                alert('[ERRO] Digite um valor válido');
             } else {
 
-                for (i in projetosLocalStorage) {            
+                for (i in projetosLocalStorage) {      
                     
                     if(i === nomeUltimoProjeto) {
 
-                        var categoriaSelecionada = categoria.value                        
-                        var objetoRenda = projetosLocalStorage[i].renda
-                        var chave = Number(Object.keys(objetoRenda).length)                       
-                        var addRenda = projetosLocalStorage[i]
-                        addRenda['renda'][++chave] = {}
-                        addRenda['renda'][chave]['valorRenda'] = Number(inputAdicionarRenda.value)
-                        addRenda['renda'][chave]['categoria'] = categoriaSelecionada
-                        addRenda['renda'][chave]['descricao'] = descricao.value
-                        console.log(projetosLocalStorage)
-                        localStorage.setItem('projetos', JSON.stringify(projetosLocalStorage))
+                        const categoriaSelecionada = categoria.value;
+                        const objetoRenda = projetosLocalStorage[i].renda;
+                        let chave = Number(Object.keys(objetoRenda).length);
+                        const addRenda = projetosLocalStorage[i];
+                        addRenda['renda'][++chave] = {};
+                        addRenda['renda'][chave]['valorRenda'] = Number(inputAdicionarRenda.value);
+                        addRenda['renda'][chave]['categoria'] = categoriaSelecionada;
+                        addRenda['renda'][chave]['descricao'] = descricao.value;
+                        console.log(projetosLocalStorage);
+                        localStorage.setItem('projetos', JSON.stringify(projetosLocalStorage));
+                        inputAdicionarRenda.value = '';
+                        inputAdicionarRenda.focus();
                         break;
-                        inputAdicionarRenda.value = ''  
-                        inputAdicionarRenda.focus()
                     }
                 }               
             }            
