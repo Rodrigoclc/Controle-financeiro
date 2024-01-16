@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testes com divs</title>
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            display: flex;
+            justify-content: center;
+        }
+
+        body {
+            background-color: #82928d;
+            max-width: 30rem;
+            margin: auto;
+            border-radius: .5rem;
+            padding: .5rem;
+        }
+
+        p {
+            color: white;
+        }
+
+        select {
+            display: flex;
+            width: 95%;
+            margin: auto;
+        }        
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            margin: auto;
+        }
+
+        .miniContainer {
+            margin-top: .75rem;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .cards {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid black;
+            background-color: #2e404d;
+            width: 45%;
+            height: 90px;
+            border-radius: .5rem;
+        }
+
+        .divmaeresultado {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            margin: auto;
+            margin-top: 1rem;
+            padding: .50rem;
+            background-color: #eeebe6;
+            border-radius: .5rem;
+            width: 90%;
+        }
+
+        .divResultadoTitulos {
+            display: flex;
+            flex-direction: column;
+            align-items: end;
+            width: 47%;
+        }
+
+        .divResultadoValor {
+            display: flex;
+            flex-direction: column;
+        }
+
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Despesas de Compras</h1>
+    </header>
+    <main>
+            <select name="" id="">
+                <option value="casa">Casa</option>
+            </select>
+        <div class="container">
+
+            <div class="miniContainer">
+                <div class="cards">
+                    <div>Adicionar renda</div>
+                </div>
+                <div class="cards">
+                    <div>Adicionar despesas</div>
+                </div>
+            </div>
+            <div class="miniContainer">
+                <div class="cards">
+                    <div>Lista</div>
+                </div>
+                <div class="cards">
+                    <div>Relatórios</div>
+                </div>
+            </div>
+            <div class="miniContainer">
+                <div class="cards">
+                    <div>Projetos</div>
+                </div>
+                <div class="cards">
+                    <div>Opções</div>
+                </div>
+            </div>
+            <div class="divmaeresultado">
+                <div class="divResultadoTitulos">
+                    <div>Saldo inicial:</div>
+                    <div>Renda:</div>
+                    <div>Despesa:</div>
+                    <div>Saldo final:</div>
+
+                </div>
+                <div class="divResultadoValor">
+                    <div>0,00</div>
+                    <div>0,00</div>
+                    <div>0,00</div>
+                    <div>0,00</div>
+                </div>
+            </div>
+
+
+
+
+
+        </div>
+    </main>
+</body>
+</html>
