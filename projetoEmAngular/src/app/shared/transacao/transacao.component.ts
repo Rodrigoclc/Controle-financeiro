@@ -15,6 +15,7 @@ export class TransacaoComponent implements OnInit {
   transacoes!: FormGroup;
 
   @Input()label: string = '';
+  @Input()categorias: string[] = [];
 
   constructor(private fb: FormBuilder) { }
 
@@ -49,6 +50,7 @@ export class TransacaoComponent implements OnInit {
 
   subimtForm() {
     this.dadosEnviados.emit(this.transacoes.value);
+    this.transacoes.patchValue({valor: '', descricao: ''});
   }
 
 }

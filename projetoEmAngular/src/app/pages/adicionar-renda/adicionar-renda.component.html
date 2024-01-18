@@ -1,1 +1,5 @@
-<app-transacao (dadosEnviados)="receberDados($event)" label="{{ tituloHeader }}"></app-transacao>
+<app-transacao 
+    (dadosEnviados)="receberDados($event)" 
+    label="{{ tituloHeader }}"
+    [categorias]="listaCategorias">
+</app-transacao>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Projeto, Transacao } from 'src/app/interfaces/iProjeto';
+import { CategoriasService } from 'src/app/services/categorias.service';
 import { CreatePojectService } from 'src/app/services/create-poject.service'
 
 @Component({
@@ -14,12 +15,15 @@ export class AdicionarDespesaComponent implements OnInit {
 
   listaProjetos!: Projeto[];
   ultimoProjeto!: string;
+  listaCategorias!: string[];
 
-  constructor(private projetosService: CreatePojectService) { }
+  constructor(private projetosService: CreatePojectService, 
+    private categorias: CategoriasService) { }
 
   ngOnInit(): void {
     this.ultimoProjeto = this.projetosService.buscarUltimoProjetoSelecionado();
     this.listaProjetos = this.projetosService.recuperarProjetos();
+    this.listaCategorias = this.categorias.buscarCategoriasDespesa();
   }
 
   receberDados(dados: Transacao) {

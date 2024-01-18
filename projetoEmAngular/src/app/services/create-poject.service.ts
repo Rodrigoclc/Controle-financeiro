@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Projeto } from '../interfaces/iProjeto';
+import { Projeto, Transacao } from '../interfaces/iProjeto';
 
 @Injectable({
   providedIn: 'root'
@@ -29,15 +29,15 @@ export class CreatePojectService {
       listaProjetos.push(nomePorjeto);
     }
     localStorage.setItem('projetos', JSON.stringify(listaProjetos));
+    this.listaProjetos = listaProjetos;
     return listaProjetos
   }
 
   recuperarProjetos(): Projeto[] {
     const getprojetosLocalStorage: string = localStorage.getItem('projetos')!;
     const listaProjetosRecuperada: Projeto[] = JSON.parse(getprojetosLocalStorage);
-    console.log(listaProjetosRecuperada)
     const listaProjetos: Projeto[] = listaProjetosRecuperada.map(dado => Projeto.criarApartirdaLocalStorage(dado));
-
+    this.listaProjetos = listaProjetos;
     return listaProjetos
   }
 
@@ -51,5 +51,15 @@ export class CreatePojectService {
 
   retornarProjetoSelecionado(listaProjetos: Projeto[], projeto: string): Projeto {
     return (listaProjetos.find(objeto => objeto.nome == projeto)!)
+  }
+
+  mostarRenda(nomeProjeto: string): Transacao[] {
+    const rendas: Transacao[] = this.listaProjetos.find(projeto => projeto.nome === nomeProjeto)!.renda;
+    return rendas;
+  }
+
+  mostarDespesa(nomeProjeto: string): Transacao[] {
+    const despesa: Transacao[] = this.listaProjetos.find(projeto => projeto.nome === nomeProjeto)!.despesa;
+    return despesa;
   }
 }

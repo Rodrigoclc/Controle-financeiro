@@ -15,6 +15,7 @@ body {
     margin: auto;
     border-radius: .5rem;
     padding: .5rem;
+    height: 95vh;
 }
 
 p {
