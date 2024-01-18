@@ -21,6 +21,7 @@ export class ListaComponent implements OnInit {
   ngOnInit(): void {
     this.rendas = this.serviceProjetos.mostarRenda(this.projetoSelecionado);
     this.despesa = this.serviceProjetos.mostarDespesa(this.projetoSelecionado);
+    // console.log(Projeto.mostrarTransacoes())
   }
 
 }

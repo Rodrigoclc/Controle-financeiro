@@ -28,8 +28,8 @@ export class Transacao {
     }
 
     static criarApartirdaLocalStorage(dado: any): Projeto {
-        const projeto = new Projeto(dado.nome, dado.saldoInicial, dado.renda, dado.despesa)
-        return projeto;
+      const projeto = new Projeto(dado.nome, dado.saldoInicial, dado.renda, dado.despesa)
+      return projeto;
     }
   
     mostrarSaldoinicial(): number {
@@ -60,6 +60,11 @@ export class Transacao {
 
     alterarSaldoInicial(novoSaldoInicial: number): void {
       this.saldoInicial = novoSaldoInicial;
+    }
+
+    mostrarTransacoes(): Transacao[] {
+      const transacoes: Transacao[] = [];
+      return this.renda, this.despesa;
     }
   }
   
