@@ -6,12 +6,12 @@
         <div class="projetoSelecionado">
             <div>{{ projetoSelecionado }}</div>
             <div>
-                <select>
+                <select (change)="categoriaEscolhida()" [(ngModel)]="opcaoSelecionada">
                     <option *ngFor="let i of seletor">{{ i }}</option>
                 </select>
             </div>
         </div>
-        <div class="trasacoes" *ngFor="let i of rendas">
+        <div class="trasacoes" *ngFor="let i of categoriaEscolhida()">
             <div class="categoriaDescricao">
                 <p>{{ i.categoria }}</p>
                 <p>{{ i.descricao }}</p>

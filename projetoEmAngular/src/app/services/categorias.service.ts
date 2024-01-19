@@ -11,8 +11,16 @@ export class CategoriasService {
 
   constructor() { }
 
-  consultarLocalStorage(): boolean {
+  consultarCategoriRendaLocalStorage(): boolean {
     if(!localStorage.getItem('categoriasRenda')) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  consultarCategoriDespesaLocalStorage(): boolean {
+    if(!localStorage.getItem('categoriasDespesa')) {
       return false;
     } else {
       return true;

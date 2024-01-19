@@ -39,6 +39,7 @@ export class HomeComponent implements OnInit {
 
   salvarProjetoSelecionado() {
     localStorage.setItem('ultimoProjeto', this.opcaoSelecionada);
+    this.mostrarResultados();
   }
 
   mostrarResultados() {

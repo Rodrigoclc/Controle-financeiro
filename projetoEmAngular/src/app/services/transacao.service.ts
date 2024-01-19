@@ -8,7 +8,5 @@ export class TransacaoService {
 
   constructor() { }
 
-  novaTrasacao() {
-    const transacao: Transacao = new Transacao() 
-  }
+  
 }

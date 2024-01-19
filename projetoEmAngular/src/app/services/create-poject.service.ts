@@ -62,4 +62,16 @@ export class CreatePojectService {
     const despesa: Transacao[] = this.listaProjetos.find(projeto => projeto.nome === nomeProjeto)!.despesa;
     return despesa;
   }
+
+  mostrarTransacoes(nomeProjeto: string): Transacao[] {
+    const transacoes: Transacao[] = [];
+    this.listaProjetos.find(projeto => projeto.nome === nomeProjeto)!.despesa.forEach(i => {
+      transacoes.push(i);
+    })
+
+    this.listaProjetos.find(projeto => projeto.nome === nomeProjeto)!.renda.forEach(i => {
+      transacoes.push(i);
+    })
+    return transacoes;
+  }
 }
