@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit {
 
   carregarProjetos(teste: boolean): void {
     if(teste === false) {
-      this.listaProjetos = this.homeService.criarProjetos();
+      this.listaProjetos = this.homeService.criarProjetosDefault();
     } else {
       this.listaProjetos = this.homeService.recuperarProjetos();
     }

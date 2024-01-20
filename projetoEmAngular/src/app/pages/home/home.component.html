@@ -1,6 +1,6 @@
 <body>
     <header>
-        <h1>DespesasdeCompras</h1>
+        <h1>Despesas de Compras</h1>
     </header>
     <main>
             <select [(ngModel)]="opcaoSelecionada" (change)="salvarProjetoSelecionado()">
@@ -25,7 +25,7 @@
                 </div>
             </div>
             <div class="miniContainer">
-                <div class="cards">
+                <div class="cards" [routerLink]="'projetos'">
                     <div><p>Projetos</p></div>
                 </div>
                 <div class="cards">

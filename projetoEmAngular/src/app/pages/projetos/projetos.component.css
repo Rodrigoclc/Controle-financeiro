@@ -1,0 +1,111 @@
+body {
+    background-color: #82928d;
+    max-width: 30rem;
+    margin: auto;
+    border-radius: .5rem;
+    padding: .5rem;
+    min-height: 95vh;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.novoProjeto {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: solid black .25rem;
+    width: 30vw;
+    height: 2rem;
+    border-radius: .25rem;
+    cursor: pointer;
+    margin-bottom: 7px;
+}
+
+.detalhesProjetos {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 90vw;
+    background-color: white;
+    border-radius: .25rem;
+    margin-bottom: 3px;
+}
+
+.nomeProjeto {
+    width: 65vw;
+}
+
+.saldoProjeto {
+    display: flex;
+    width: 20vw;
+    justify-content: end;
+}
+
+.janelasModal {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.281);
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.modalEdicao {
+    display: flex;
+    flex-direction: column;
+    width: 21rem;
+    padding: 5px;
+}
+
+.divsModalEdicao {
+    padding: 2px;
+    background-color: white;
+    margin-bottom: 2px;
+    border-radius: .25rem;
+}
+
+.janelasModal {
+    display: flex;
+    flex-direction: column;
+}
+
+.modalNovoProjeto {
+    background-color: #82928d;
+    border-radius: .25rem;
+    width: 90vw;
+    height: 200px;
+    align-items: center;
+}
+
+.modalNovoProjeto > input {
+    width: 85vw;
+    margin-left: 7px;
+
+}
+
+.modalNovoProjeto > p {
+    margin-bottom: 3px;
+    margin-left: 7px;
+}
+
+.modalNovoProjeto > h3 {
+    text-align: center;
+}
+
+.divsButton {
+    display: flex;
+    margin-top: 5px;
+    justify-content: space-around;
+}
+
+.divsButton > button {
+    width: 47%;
+}

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -8,7 +8,8 @@ import { HomeComponent } from './pages/home/home.component';
 import { AdicionarRendaComponent } from './pages/adicionar-renda/adicionar-renda.component';
 import { AdicionarDespesaComponent } from './pages/adicionar-despesa/adicionar-despesa.component';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { ListaComponent } from './pages/lista/lista.component'
+import { ListaComponent } from './pages/lista/lista.component';
+import { ProjetosComponent } from './pages/projetos/projetos.component'
 
 @NgModule({
   declarations: [
@@ -17,11 +18,13 @@ import { ListaComponent } from './pages/lista/lista.component'
     AdicionarRendaComponent,
     AdicionarDespesaComponent,
     ListaComponent,
+    ProjetosComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     SharedModule
   ],
   providers: [],
