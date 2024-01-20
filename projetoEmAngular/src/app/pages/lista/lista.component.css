@@ -18,7 +18,8 @@ header {
 }
 
 .projetoSelecionado > div, select {
-    width: 50vw;
+    width: 50%;
+    cursor: pointer;
 }
 
 .trasacoes {
