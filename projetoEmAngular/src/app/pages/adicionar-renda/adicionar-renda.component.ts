@@ -20,12 +20,7 @@ export class AdicionarRendaComponent implements OnInit {
   constructor(
     private activeRoute: ActivatedRoute, 
     private projetoSevice: CreatePojectService,
-    private categorias: CategoriasService) {
-      
-      // this.activeRoute.params.subscribe(
-      //   res => console.log(res)
-      // )
-  }
+    private categorias: CategoriasService) { }
 
   ngOnInit(): void {
     this.ultimoProjeto = this.projetoSevice.buscarUltimoProjetoSelecionado();
@@ -34,7 +29,6 @@ export class AdicionarRendaComponent implements OnInit {
   }
 
   receberDados(dados: Transacao) {
-    console.log(this.listaProjetos.find(objeto => objeto.nome == this.ultimoProjeto)!.adicionarRenda(dados));
     localStorage.setItem('projetos', JSON.stringify(this.listaProjetos));
   }
 

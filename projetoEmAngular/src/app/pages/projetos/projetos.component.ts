@@ -40,7 +40,6 @@ export class ProjetosComponent implements OnInit {
   }
 
   chamarModalNovoProjeto(index: number) {
-    console.log(index);
     this.isModalNovoProjeto = true;
     if(index == 0) {
       this.modalCriarOuAtualizarProjeto = 'Novo projeto'
@@ -61,14 +60,14 @@ export class ProjetosComponent implements OnInit {
     this.projetosSevices.excluirProjeto(this.projetoSelecionado.nome);
   }
 
-  atualizar(): void {
-    this.chamarModalNovoProjeto(1);
-    this.projetosSevices.atualizarProjeto(this.projetoSelecionado.nome, this.novoProjetoForm.value.nomeProjeto, this.novoProjetoForm.value.saldoInicial);
-    this.novoProjetoForm.reset();
-  }
-
-  criarNovoProjeto(): void {
-    this.projetosSevices.criarNovosProjetos(this.novoProjetoForm.value.nomeProjeto, this.novoProjetoForm.value.saldoInicial);
-    this.novoProjetoForm.reset();
+  criarNovoProjetoOuAtualizar(atualizarEditar: string): void {
+    if(atualizarEditar === 'Novo projeto') {
+      this.projetosSevices.criarNovosProjetos(this.novoProjetoForm.value.nomeProjeto, this.novoProjetoForm.value.saldoInicial);
+      this.novoProjetoForm.reset();
+    } else {
+      this.projetosSevices.atualizarProjeto(this.projetoSelecionado.nome, this.novoProjetoForm.value.nomeProjeto, this.novoProjetoForm.value.saldoInicial);
+      this.novoProjetoForm.reset();
+    }   
+    this.isModalNovoProjeto = false;
   }
 }

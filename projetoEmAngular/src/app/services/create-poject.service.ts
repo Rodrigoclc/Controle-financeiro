@@ -19,8 +19,7 @@ export class CreatePojectService {
     return (!!localStorage.getItem('projetosSelect'));
   }
 
-  criarProjetosDefault(): Projeto[] {
-    
+  criarProjetosDefault(): Projeto[] {    
     
     localStorage.setItem('projetosSelect', JSON.stringify(this.options));
     const listaProjetos: Projeto[] = [];
@@ -35,7 +34,7 @@ export class CreatePojectService {
     return listaProjetos;
   }
 
-  criarNovosProjetos(nomeProjeto: string, saldoInicial: number) {
+  criarNovosProjetos(nomeProjeto: string, saldoInicial: number): void {
     const projeto: Projeto = new Projeto(nomeProjeto, saldoInicial, [], []);
     this.listaProjetos.push(projeto);
     this.options.push(nomeProjeto);
@@ -85,18 +84,30 @@ export class CreatePojectService {
     return transacoes;
   }
 
-  excluirProjeto(nomeProjeto: string): void {
-    const indexProjeto = this.listaProjetos.findIndex(projeto => projeto.nome === nomeProjeto)!;
-    this.listaProjetos.splice(indexProjeto, 1);
-    localStorage.setItem('projetos', JSON.stringify(this.listaProjetos));
-    const indexOption = (this.options.findIndex(i => i === nomeProjeto));
-    this.options.splice(indexOption, 1);
-    localStorage.setItem('projetosSelect', JSON.stringify(this.options));
+  excluirProjeto(nomeProjeto: string): void {    
+    if(this.listaProjetos[1] === undefined) {
+      alert('Esse é o último projeto. Tente edita-lo');
+    } else {
+      const indexProjeto: number = this.listaProjetos.findIndex(projeto => projeto.nome === nomeProjeto)!;
+      this.listaProjetos.splice(indexProjeto, 1);
+      localStorage.setItem('projetos', JSON.stringify(this.listaProjetos));
+      const indexOption: number = (this.options.findIndex(i => i === nomeProjeto));
+      this.options.splice(indexOption, 1);
+      localStorage.setItem('projetosSelect', JSON.stringify(this.options));
+      if(localStorage.getItem('ultimoProjeto') === nomeProjeto){
+        localStorage.setItem('ultimoProjeto', this.listaProjetos[0].nome);
+      }
+    }
   }
 
-  atualizarProjeto(nomeProjeto: string, nomeEditado: string, saldoEditado: number) {
-    const projeto = this.listaProjetos.find(projeto => projeto.nome === nomeProjeto)!;
+  atualizarProjeto(nomeProjeto: string, nomeEditado: string, saldoEditado: number): void {
+    const projeto: Projeto = this.listaProjetos.find(projeto => projeto.nome === nomeProjeto)!;
     projeto.nome = nomeEditado;
     projeto.saldoInicial = saldoEditado;
+    localStorage.setItem('ultimoProjeto', nomeEditado);
+    localStorage.setItem('projetos', JSON.stringify(this.listaProjetos));
+    const index: number = this.options.findIndex(i => i === nomeProjeto);
+    this.options[index] = nomeEditado;
+    localStorage.setItem('projetosSelect', JSON.stringify(this.options));
   }
 }

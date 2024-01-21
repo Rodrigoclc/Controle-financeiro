@@ -43,7 +43,6 @@ export class HomeComponent implements OnInit {
   }
 
   mostrarResultados() {
-    console.log(this.listaProjetos)
     const projeto = (this.listaProjetos.find(objeto => objeto.nome == this.opcaoSelecionada));
     this.saldoInicial = (projeto!.mostrarSaldoinicial());
     this.renda = (projeto!.mostrarTotalRenda());
