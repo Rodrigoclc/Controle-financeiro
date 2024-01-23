@@ -7,7 +7,7 @@ import { Projeto, Transacao } from '../interfaces/iProjeto';
 export class CreatePojectService {
 
   listaProjetos!: Projeto[];
-  options: string[] = ['Projeto 1', 'Projeto 2', 'Projeto 3'];
+  options!: string[];
 
   constructor() { }
 
@@ -20,7 +20,7 @@ export class CreatePojectService {
   }
 
   criarProjetosDefault(): Projeto[] {    
-    
+    this.options  = ['Projeto 1', 'Projeto 2', 'Projeto 3'];
     localStorage.setItem('projetosSelect', JSON.stringify(this.options));
     const listaProjetos: Projeto[] = [];
     for (let i of this.options) {
@@ -37,6 +37,7 @@ export class CreatePojectService {
   criarNovosProjetos(nomeProjeto: string, saldoInicial: number): void {
     const projeto: Projeto = new Projeto(nomeProjeto, saldoInicial, [], []);
     this.listaProjetos.push(projeto);
+    console.log(nomeProjeto)
     this.options.push(nomeProjeto);
     localStorage.setItem('projetos', JSON.stringify(this.listaProjetos));
     localStorage.setItem('projetosSelect', JSON.stringify(this.options));

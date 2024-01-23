@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Projeto } from 'src/app/interfaces/iProjeto';
-import { CreatePojectService } from 'src/app/services/create-poject.service';
+import { CreatePojectService } from 'src/app/services/projetos.service';
 
 @Component({
   selector: 'app-projetos',
@@ -62,9 +62,11 @@ export class ProjetosComponent implements OnInit {
 
   criarNovoProjetoOuAtualizar(atualizarEditar: string): void {
     if(atualizarEditar === 'Novo projeto') {
+      if(!this.novoProjetoForm.value.saldoInicial) this.novoProjetoForm.value.saldoInicial = 0;
       this.projetosSevices.criarNovosProjetos(this.novoProjetoForm.value.nomeProjeto, this.novoProjetoForm.value.saldoInicial);
       this.novoProjetoForm.reset();
     } else {
+      if(!this.novoProjetoForm.value.saldoInicial) this.novoProjetoForm.value.saldoInicial = 0;
       this.projetosSevices.atualizarProjeto(this.projetoSelecionado.nome, this.novoProjetoForm.value.nomeProjeto, this.novoProjetoForm.value.saldoInicial);
       this.novoProjetoForm.reset();
     }   

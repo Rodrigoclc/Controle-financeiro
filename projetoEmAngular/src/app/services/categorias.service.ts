@@ -30,22 +30,54 @@ export class CategoriasService {
   buscarCategoriasRenda(): string[] {
     if(!localStorage.getItem('categoriasRenda')) {
       const categorias: string[] = ['Salario', 'Comissão', 'Vendas'];
-      localStorage.setItem('categoriasRenda', JSON.stringify(categorias));
+      this.categoriasRenda = categorias;
+      localStorage.setItem('categoriasRenda', JSON.stringify(this.categoriasRenda));
       return categorias;
     } else {
       const categorias: string[] = JSON.parse(localStorage.getItem('categoriasRenda')!);
-      return categorias;
+      this.categoriasRenda = categorias;
+      return this.categoriasRenda;
     }
   }
 
   buscarCategoriasDespesa(): string[] {
     if(!localStorage.getItem('categoriasDespesa')) {
       const categorias: string[] = ['Mercado', 'Restaurante', 'Contas'];
-      localStorage.setItem('categoriasDespesa', JSON.stringify(categorias));
+      this.categoriasDespesa = categorias;
+      localStorage.setItem('categoriasDespesa', JSON.stringify(this.categoriasDespesa));
       return categorias;
     } else {
       const categorias: string[] = JSON.parse(localStorage.getItem('categoriasDespesa')!);
-      return categorias;
+      this.categoriasDespesa = categorias;
+      return this.categoriasDespesa;
+    }
+  }
+
+  editarCategorias(categoria: string): void {
+    if(categoria === 'renda') {
+      const categoria: string[] = this.buscarCategoriasRenda();
+    }
+  }
+
+  adicionarCategoria(categoria: string, novaCategoria: string): void {
+    if(categoria === 'renda') {
+      this.categoriasRenda.push(novaCategoria);      
+      localStorage.setItem('categoriasRenda', JSON.stringify(this.categoriasRenda));
+    } else {
+      this.categoriasDespesa.push(novaCategoria);
+      localStorage.setItem('categoriasDespesa', JSON.stringify(this.categoriasDespesa));
+    }
+  }
+
+  excluirCategoria(categoria: string, nomeCategoria: string) {
+    if(categoria === 'renda') {      
+      const index: number = this.categoriasRenda.findIndex(i => i === nomeCategoria);
+      this.categoriasRenda.splice(index, 1);
+      localStorage.setItem('categoriasRenda', JSON.stringify(this.categoriasRenda));
+    } else {
+      const index: number = this.categoriasDespesa.findIndex(i => i === nomeCategoria);
+      this.categoriasDespesa.splice(index, 1);
+      localStorage.setItem('categoriasDespesa', JSON.stringify(this.categoriasDespesa)); 
     }
   }
 }

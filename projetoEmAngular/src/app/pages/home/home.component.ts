@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Projeto } from 'src/app/interfaces/iProjeto';
-import { CreatePojectService } from 'src/app/services/create-poject.service';
+import { CreatePojectService } from 'src/app/services/projetos.service';
 
 @Component({
   selector: 'app-home',
@@ -8,8 +8,7 @@ import { CreatePojectService } from 'src/app/services/create-poject.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  // exite um erro quando o projeto é carregado pela primeira vez pois ainda não existe options
-  primeirosOptions: string[] | undefined;
+  primeirosOptions!: string[];
   opcaoSelecionada!: string;
   saldoInicial!: number;
   renda!: number;
@@ -24,7 +23,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
 
     this.carregarProjetos(this.homeService.consultarProjetosLocalStorage())
-    this.primeirosOptions  = ((localStorage.getItem('projetosSelect'))?.slice(2, -2))?.split('","');
+    this.primeirosOptions  = ((localStorage.getItem('projetosSelect'))?.slice(2, -2))!.split('","');
     this.opcaoSelecionada = this.homeService.buscarUltimoProjetoSelecionado();
     this.mostrarResultados();
   }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Projeto, Transacao } from 'src/app/interfaces/iProjeto';
-import { CreatePojectService } from 'src/app/services/create-poject.service';
+import { CreatePojectService } from 'src/app/services/projetos.service';
 
 @Component({
   selector: 'app-lista',

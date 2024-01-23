@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Projeto, Transacao } from 'src/app/interfaces/iProjeto';
 import { CategoriasService } from 'src/app/services/categorias.service';
-import { CreatePojectService } from 'src/app/services/create-poject.service';
+import { CreatePojectService } from 'src/app/services/projetos.service';
 
 @Component({
   selector: 'app-adicionar-renda',
@@ -18,7 +18,6 @@ export class AdicionarRendaComponent implements OnInit {
   tituloHeader: string = 'Adicionar renda';
 
   constructor(
-    private activeRoute: ActivatedRoute, 
     private projetoSevice: CreatePojectService,
     private categorias: CategoriasService) { }
 
@@ -29,6 +28,7 @@ export class AdicionarRendaComponent implements OnInit {
   }
 
   receberDados(dados: Transacao) {
+    this.listaProjetos.find(objeto => objeto.nome == this.ultimoProjeto)!.adicionarRenda(dados);
     localStorage.setItem('projetos', JSON.stringify(this.listaProjetos));
   }
 

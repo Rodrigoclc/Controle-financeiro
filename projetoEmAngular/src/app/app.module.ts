@@ -9,7 +9,9 @@ import { AdicionarRendaComponent } from './pages/adicionar-renda/adicionar-renda
 import { AdicionarDespesaComponent } from './pages/adicionar-despesa/adicionar-despesa.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ListaComponent } from './pages/lista/lista.component';
-import { ProjetosComponent } from './pages/projetos/projetos.component'
+import { ProjetosComponent } from './pages/projetos/projetos.component';
+import { OpcoesComponent } from './pages/opcoes/opcoes.component';
+import { RelatoriosComponent } from './pages/relatorios/relatorios.component'
 
 @NgModule({
   declarations: [
@@ -19,6 +21,8 @@ import { ProjetosComponent } from './pages/projetos/projetos.component'
     AdicionarDespesaComponent,
     ListaComponent,
     ProjetosComponent,
+    OpcoesComponent,
+    RelatoriosComponent,
   ],
   imports: [
     BrowserModule,
