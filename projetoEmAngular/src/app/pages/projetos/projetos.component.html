@@ -21,20 +21,20 @@
             </div>
         </div>
         <!--Moda para criar novos projetos-->
-        <div *ngIf="isModalNovoProjeto" class="janelasModal">
-            <form [formGroup]="novoProjetoForm" (ngSubmit)="criarNovoProjetoOuAtualizar(modalCriarOuAtualizarProjeto)">
-                <div class="modalNovoProjeto">
-                    <h3>{{ modalCriarOuAtualizarProjeto }}</h3>
+        <div *ngIf="isModalNovoProjeto" class="janelasModal">            
+            <div class="modalNovoProjeto">
+                <h3>{{ modalCriarOuAtualizarProjeto }}</h3>
+                <form [formGroup]="novoProjetoForm" (ngSubmit)="criarNovoProjetoOuAtualizar(modalCriarOuAtualizarProjeto)">
                     <p>Nome do projeto:</p>
-                    <input type="text">
+                    <input type="text" formControlName="nomeProjeto">
                     <p>Saldo inicial:</p>
                     <input type="number" formControlName="saldoInicial">
                     <div class="divsButton">
                         <button type="button" (click)="desfazerModalNovoProjeto()">Cancelar</button>
                         <button type="submit">Concluir</button>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </main>
 </body>

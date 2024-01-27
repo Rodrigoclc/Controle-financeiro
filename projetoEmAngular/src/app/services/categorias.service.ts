@@ -53,9 +53,15 @@ export class CategoriasService {
     }
   }
 
-  editarCategorias(categoria: string): void {
-    if(categoria === 'renda') {
-      const categoria: string[] = this.buscarCategoriasRenda();
+  editarCategorias(rendaOuDespesa: string, categoriaAEditar: string, novaCategoria: string): void {
+    if(rendaOuDespesa === 'renda') {
+      const index: number = this.categoriasRenda.findIndex(i => i === categoriaAEditar);
+      this.categoriasRenda[index] = novaCategoria;
+      localStorage.setItem('categoriasRenda', JSON.stringify(this.categoriasRenda));
+    } else {
+      const index: number = this.categoriasDespesa.findIndex(i => i === categoriaAEditar);
+      this.categoriasDespesa[index] = novaCategoria;
+      localStorage.setItem('categoriasDespesa', JSON.stringify(this.categoriasDespesa));
     }
   }
 

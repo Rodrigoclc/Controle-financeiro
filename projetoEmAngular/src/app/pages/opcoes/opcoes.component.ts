@@ -10,7 +10,8 @@ import { CategoriasService } from 'src/app/services/categorias.service';
 export class OpcoesComponent implements OnInit {
 
   listaCategorias!: string[];
-  isSelecionado: boolean = true;
+  // isSelecionado: boolean = true; sem uso!
+  criarOuAtualizar!: string;
   isSelecionarRenda!: boolean;
   isSelecionarDespesa!: boolean;
   isModalEdicao!: boolean;
@@ -46,8 +47,13 @@ export class OpcoesComponent implements OnInit {
     }    
   }
 
-  chamarModalNovaCategoria() {
+  chamarModalCriarOuAtualizar(index: number) {
     this.isModalNovaCategoria = true;
+    if(index === 0) {
+      this.criarOuAtualizar = 'Adicionar categoria';
+    } else {
+      this.criarOuAtualizar = 'Editar categoria';
+    }
   }
 
   desfazerModalNovaCategoria() {
@@ -62,8 +68,12 @@ export class OpcoesComponent implements OnInit {
     this.categoriasService.excluirCategoria(this.rendaOuDespesa, this.categoriaSelecionada);
   }
 
-  adicionarCategoria() {
-    this.categoriasService.adicionarCategoria(this.rendaOuDespesa, this.novoProjetoForm.value.categoria);
+  adicionarOuEditarCategoria(acao: string) {
+    if(acao === 'Adicionar categoria') {
+      this.categoriasService.adicionarCategoria(this.rendaOuDespesa, this.novoProjetoForm.value.categoria);
+    } else {
+      this.categoriasService.editarCategorias(this.rendaOuDespesa, this.categoriaSelecionada, this.novoProjetoForm.value.categoria);
+    }    
     this.novoProjetoForm.reset();
     this.desfazerModalNovaCategoria()
   }

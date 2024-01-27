@@ -3,7 +3,7 @@
         <h3 [routerLink]="''">< Editar categorias</h3>
     </header>
     <main>
-        <div (click)="chamarModalNovaCategoria()" class="editarCategoria">
+        <div (click)="chamarModalCriarOuAtualizar(0)" class="editarCategoria">
             <p>+ Adicionar categoria</p>
         </div>
         <div class="rendasDespesas">
@@ -23,8 +23,8 @@
         <!--Modal para editar categorias-->>
         <div *ngIf="isModalNovaCategoria" class="janelasModal">            
             <div class="modalNovoProjeto">
-                <h3>Adicionar categoria</h3>
-                <form [formGroup]="novoProjetoForm" (ngSubmit)="adicionarCategoria()">
+                <h3>{{ criarOuAtualizar }}</h3>
+                <form [formGroup]="novoProjetoForm" (ngSubmit)="adicionarOuEditarCategoria(criarOuAtualizar)">
                     <p>Categoria:</p>
                     <input type="text"  formControlName="categoria">                    
                     <div class="divsButton">
@@ -37,7 +37,7 @@
         <!--Modal para selecionar, atualizar e excluir projetos-->
         <div *ngIf="isModalEdicao" (click)="desfazerModalEdicao()" class="janelasModal">
             <div class="modalEdicao">
-                <div class="divsModalEdicao" (click)="chamarModalNovaCategoria()"><p>Atualizar</p></div>
+                <div class="divsModalEdicao" (click)="chamarModalCriarOuAtualizar(1)"><p>Atualizar</p></div>
                 <div class="divsModalEdicao" (click)="excluir()"><p>Excluir</p></div>
             </div>
         </div>

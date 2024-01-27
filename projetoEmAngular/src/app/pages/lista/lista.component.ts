@@ -10,8 +10,8 @@ import { CreatePojectService } from 'src/app/services/projetos.service';
 export class ListaComponent implements OnInit {
 
   seletor: string[] = ['Todos', 'Rendas', 'Despesas'];
-  opcaoSelecionada: string = '';
-  projetoSelecionado: string = localStorage.getItem('ultimoProjeto')!;
+  opcaoSelecionada!: string;
+  projetoSelecionado!: string;
   rendas!: Transacao[];
   despesa!: Transacao[];
   transacoes!: Transacao[];
@@ -21,6 +21,7 @@ export class ListaComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.projetoSelecionado = this.serviceProjetos.buscarUltimoProjetoSelecionado();
     this.rendas = this.serviceProjetos.mostarRenda(this.projetoSelecionado);
     this.despesa = this.serviceProjetos.mostarDespesa(this.projetoSelecionado);
     this.transacoes= this.serviceProjetos.mostrarTransacoes(this.projetoSelecionado);
